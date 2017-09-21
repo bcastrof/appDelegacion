@@ -14,8 +14,7 @@ import java.util.List;
  */
 public class Usuarios {
 
-    /*relacion con accesso a usuarios.*/
-    private AccesoUsuarios usuarios;
+    AccesoUsuarios accesUser;
 
     /*relacion con equipos lista por un usuario puede tener varios equipos pero
     pero un equipo es de un usuario.*/
@@ -28,6 +27,7 @@ public class Usuarios {
     /*Atributos de la clase*/
     private String nombre;
     private String apellidos;
+    private String userwin;
     private String xlnet;
     private String correo;
     private Long planta;
@@ -37,9 +37,10 @@ public class Usuarios {
     public Usuarios() {
     }
 
-    public Usuarios(String nombre, String apellidos, String xlnet, String correo, Long planta, Long telefono) {
+    public Usuarios(String nombre, String apellidos, String userwin, String xlnet, String correo, Long planta, Long telefono) {
         this.nombre = nombre;
         this.apellidos = apellidos;
+        this.userwin = userwin;
         this.xlnet = xlnet;
         this.correo = correo;
         this.planta = planta;
@@ -61,6 +62,14 @@ public class Usuarios {
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
+    }
+
+    public String getUserwin() {
+        return userwin;
+    }
+
+    public void setUserwin(String userwin) {
+        this.userwin = userwin;
     }
 
     public String getXlnet() {
@@ -95,4 +104,25 @@ public class Usuarios {
         this.telefono = telefono;
     }
 
+    public AccesoUsuarios getAccesUser() {
+        return accesUser;
+    }
+
+    public void setAccesUser(AccesoUsuarios accesUser) {
+        this.accesUser = accesUser;
+    }
+
+    public void añadirAcceso (AccesoUsuarios accesoUsuario){
+        accesUser.setUser(this);
+    }
+ 
+    public void añadirImpresora (Impresoras impresora){
+        impresoras.add(impresora);
+        impresora.setUsuario(this);
+    }
+    
+    public void añadirEquipo (Equipos equipo){
+        equipos.add(equipo);
+        equipo.setUsuario(this);
+    }
 }

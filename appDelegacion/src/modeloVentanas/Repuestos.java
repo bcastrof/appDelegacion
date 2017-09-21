@@ -5,9 +5,6 @@
  */
 package modeloVentanas;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author bcastrof
@@ -16,7 +13,8 @@ public class Repuestos {
 
     /*relacion con impresoras lista porque un repuesto puede estar en varias
     Impresoras.*/
-    private List<Impresoras> Impresoras = new ArrayList<>();
+   // private List<Impresoras> Impresoras = new ArrayList<>();
+    Impresoras impresora;
 
     /*Atributos de la clase.*/
     private String cd_repuesto;
@@ -68,4 +66,11 @@ public class Repuestos {
         this.cantidad = cantidad;
     }
 
+    public Impresoras getImpresora() {
+        return impresora;
+    }
+
+    public void setImpresora(Impresoras impresora) {
+        this.impresora = impresora;
+    }
 }

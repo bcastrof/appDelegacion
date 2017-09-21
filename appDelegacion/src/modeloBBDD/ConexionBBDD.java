@@ -13,10 +13,10 @@ import javax.swing.JOptionPane;
 
 public class ConexionBBDD {
    
-    private String database = "D:\\pogramacion\\Proyecto_Delgacion\\appDelegacion\\appDelegacion\\bbdd\\Database12.accdb";
-    private String username="";
-    private String password="";
-    private String url = "jdbc:ucanaccess://"+database;
+    private String database = "D:\\pogramacion\\Proyecto_Delgacion\\appDelegacion\\appDelegacion\\bbdd\\delegacion";
+    private String username="bcastrof";
+    private String password="amets517";
+    private String url = "jdbc:hsqldb:"+database;
     
     public Connection conexion;
     

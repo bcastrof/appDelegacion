@@ -15,7 +15,7 @@ public class AccesoUsuarios {
     private Usuarios user;
 
     /*atributos de la clase*/
-    private String usuarioWindows;
+    private String userWin;
     private String password;
     private String fechaPassword;
 
@@ -23,19 +23,27 @@ public class AccesoUsuarios {
     public AccesoUsuarios() {
     }
 
-    public AccesoUsuarios(String usuarioWindows, String password, String fechaPassword) {
-        this.usuarioWindows = usuarioWindows;
+    public AccesoUsuarios(String userWin, String password, String fechaPassword) {
+        this.userWin = userWin;
         this.password = password;
         this.fechaPassword = fechaPassword;
     }
 
     /* Geters y Seters de los atributos*/
-    public String getUsuarioWindows() {
-        return usuarioWindows;
+    public Usuarios getUser() {
+        return user;
     }
 
-    public void setUsuarioWindows(String usuarioWindows) {
-        this.usuarioWindows = usuarioWindows;
+    public void setUser(Usuarios user) {
+        this.user = user;
+    }
+
+    public String getUserWin() {
+        return userWin;
+    }
+
+    public void setUserWin(String userWin) {
+        this.userWin = userWin;
     }
 
     public String getPassword() {
@@ -54,4 +62,7 @@ public class AccesoUsuarios {
         this.fechaPassword = fechaPassword;
     }
 
+    private void añadirUsuario(Usuarios usuario) {
+        user.setAccesUser(this);
+    }
 }

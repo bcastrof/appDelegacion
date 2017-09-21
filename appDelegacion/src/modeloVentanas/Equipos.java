@@ -38,7 +38,6 @@ public class Equipos {
     }
 
     /*Getters y Setters de los atributos*/
-
     public String getEj_equipo() {
         return ej_equipo;
     }
@@ -95,4 +94,15 @@ public class Equipos {
         this.renting = renting;
     }
 
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
+
+    public void añadirUsuario(Usuarios usuario){
+        
+    }
 }

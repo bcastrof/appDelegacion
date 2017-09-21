@@ -91,4 +91,16 @@ public class Impresoras {
         this.tipo = tipo;
     }
 
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
+
+    public void añadirRepuesto(Repuestos repuesto) {
+        repuestos.add(repuesto);
+        repuesto.setImpresora(this);
+    }
 }
