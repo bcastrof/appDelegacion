@@ -30,14 +30,14 @@ public class Usuarios {
     private String userwin;
     private String xlnet;
     private String correo;
-    private Long planta;
-    private Long telefono;
+    private int planta;
+    private int telefono;
 
     /*Constructores*/
     public Usuarios() {
     }
 
-    public Usuarios(String nombre, String apellidos, String userwin, String xlnet, String correo, Long planta, Long telefono) {
+    public Usuarios(String nombre, String apellidos, String userwin, String xlnet, String correo, int planta, int telefono) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.userwin = userwin;
@@ -88,19 +88,19 @@ public class Usuarios {
         this.correo = correo;
     }
 
-    public Long getPlanta() {
+    public int getPlanta() {
         return planta;
     }
 
-    public void setPlanta(Long planta) {
+    public void setPlanta(int planta) {
         this.planta = planta;
     }
 
-    public Long getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Long telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 

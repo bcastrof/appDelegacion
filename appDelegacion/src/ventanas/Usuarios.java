@@ -51,8 +51,12 @@ public class Usuarios extends javax.swing.JFrame {
         jtEjImp = new javax.swing.JTextField();
         jbAlta = new javax.swing.JButton();
         jbBuscar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Libreta de Contactos");
         setResizable(false);
 
         jPanelImage.setBackground(new java.awt.Color(255, 255, 255));
@@ -60,6 +64,8 @@ public class Usuarios extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon("D:\\pogramacion\\Proyecto_Delgacion\\appDelegacion\\appDelegacion\\imagenes\\logo_gob-iloveimg-resized.jpg")); // NOI18N
         jPanelImage.add(jLabel1);
+
+        jPanelUsuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.white));
 
         jlNombre.setText("NOMBRE: ");
 
@@ -189,6 +195,47 @@ public class Usuarios extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.white));
+
+        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.white));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "NOMBRE", "APELLIDOS", "TELEFONO"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 210, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,7 +244,8 @@ public class Usuarios extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -207,7 +255,9 @@ public class Usuarios extends javax.swing.JFrame {
                 .addComponent(jPanelImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -218,11 +268,15 @@ public class Usuarios extends javax.swing.JFrame {
         SimpleDateFormat formatFecha = new SimpleDateFormat("dd/mm/yyyy");
         modeloVentanas.Usuarios usuario = new modeloVentanas.Usuarios(jtNombre.getText(), jtApellidos.getText(), jtUserwin.getText(),
                 jtXlnet.getText(), jtCorreo.getText(),
-                new Long(jtPlanta.getText()), new Long(jtTelefono.getText()));
+                Integer.parseInt(jtPlanta.getText()), Integer.parseInt(jtTelefono.getText()));
 
         modeloBBDD.UsuariosBBDD usuariosBBDD = new UsuariosBBDD();
         usuariosBBDD.altaUsuarioBBDD(usuario);
-        System.out.println("");
+        //TODO 
+        /*FALTA HACER QUE GENERE EL USUARIO AUTOMATICAMENTE Y ENVIE EL CORREO CON LOS DATOS EL MISMO.
+       Y QUE SI ESTAN EN BLANCO EQUIPO Y IMPRESORA PREGUNTE SI QUEREMOS ASOCIAR UNO O EN SU DEFECTO
+       DAR DE ALTA EQUIPOS NUEVOS.
+         */    
     }//GEN-LAST:event_jbAltaActionPerformed
 
     /**
@@ -262,8 +316,11 @@ public class Usuarios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelImage;
     private javax.swing.JPanel jPanelUsuario;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JButton jbAlta;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JLabel jlApellidos;
