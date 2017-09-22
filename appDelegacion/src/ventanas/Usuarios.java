@@ -91,7 +91,7 @@ public class Usuarios extends javax.swing.JFrame {
 
         jbAlta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Save-icon.png"))); // NOI18N
         jbAlta.setToolTipText("ALTA");
-        jbAlta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jbAlta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.white));
         jbAlta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
