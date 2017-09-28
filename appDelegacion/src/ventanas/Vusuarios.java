@@ -7,16 +7,23 @@ package ventanas;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import modeloBBDD.UsuariosBBDD;
+import modeloVentanas.Usuarios;
 
 /**
  *
  * @author bcastrof
  */
-public class Usuarios extends javax.swing.JFrame {
+public class Vusuarios extends javax.swing.JFrame {
 
-    public Usuarios() {
+    private DefaultTableModel tMusuarios;
+    private List<Usuarios> usuarios;
+
+    public Vusuarios() {
         initComponents();
+        listarUsuarios();
     }
 
     /**
@@ -53,7 +60,7 @@ public class Usuarios extends javax.swing.JFrame {
         jbBuscar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tUsuarios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Libreta de Contactos");
@@ -198,8 +205,8 @@ public class Usuarios extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.white));
 
-        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.white));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tUsuarios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.white));
+        tUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -215,12 +222,12 @@ public class Usuarios extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(tUsuarios);
+        if (tUsuarios.getColumnModel().getColumnCount() > 0) {
+            tUsuarios.getColumnModel().getColumn(0).setResizable(false);
+            tUsuarios.getColumnModel().getColumn(1).setResizable(false);
+            tUsuarios.getColumnModel().getColumn(2).setResizable(false);
+            tUsuarios.getColumnModel().getColumn(3).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -279,7 +286,7 @@ public class Usuarios extends javax.swing.JFrame {
        Y QUE SI ESTAN EN BLANCO EQUIPO E IMPRESORA PREGUNTE SI QUEREMOS ASOCIAR UNO O EN SU DEFECTO
        DAR DE ALTA EQUIPOS NUEVOS.
         IMPLANTAR AUTOCOMPLETE PARA EL RESTO DE USUARIOS
-         */    
+         */
     }//GEN-LAST:event_jbAltaActionPerformed
 
     /**
@@ -299,22 +306,36 @@ public class Usuarios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vusuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vusuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vusuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vusuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Usuarios().setVisible(true);
+                new Vusuarios().setVisible(true);
             }
         });
+    }
+
+    private void listarUsuarios() {
+        tMusuarios = (DefaultTableModel) tUsuarios.getModel();
+        UsuariosBBDD u = new UsuariosBBDD();
+        usuarios = u.listarUsuarios();
+        
+           usuarios.forEach((us) -> {
+            tMusuarios.insertRow(tMusuarios.getRowCount(), new Object[]{
+                us.getNombre(), us.getApellidos(),us.getTelefono()
+            });
+        });
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -323,7 +344,6 @@ public class Usuarios extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelImage;
     private javax.swing.JPanel jPanelUsuario;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jbAlta;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JLabel jlApellidos;
@@ -344,5 +364,6 @@ public class Usuarios extends javax.swing.JFrame {
     private javax.swing.JTextField jtTelefono;
     private javax.swing.JTextField jtUserwin;
     private javax.swing.JTextField jtXlnet;
+    private javax.swing.JTable tUsuarios;
     // End of variables declaration//GEN-END:variables
 }

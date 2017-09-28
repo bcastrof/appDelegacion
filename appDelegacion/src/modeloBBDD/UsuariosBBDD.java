@@ -5,12 +5,16 @@
  */
 package modeloBBDD;
 
+import java.security.interfaces.RSAKey;
 import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modeloVentanas.Usuarios;
+import modeloVentanas.Usuarios;
 
 /**
  *
@@ -45,12 +49,12 @@ public class UsuariosBBDD {
     }
 
     public void modificarUsuarioBBDD(modeloVentanas.Usuarios usuario) {
-        
+
         String sql = "{call public.MODIFICARUSUARIO(?,?,?,?,?,?,?)}";
 
         try {
             CallableStatement cs = conexion.getConnection().prepareCall(sql);
-            
+
             cs.setString(1, usuario.getNombre());
             cs.setString(2, usuario.getApellidos());
             cs.setString(3, usuario.getUserwin());
@@ -58,8 +62,7 @@ public class UsuariosBBDD {
             cs.setString(5, usuario.getCorreo());
             cs.setInt(6, usuario.getPlanta());
             cs.setInt(7, usuario.getTelefono());
-            
-            
+
             cs.executeUpdate();
             cs.closeOnCompletion();
             cs.close();
@@ -69,20 +72,53 @@ public class UsuariosBBDD {
         }
     }
 
-    public void borrarUsuarioBBDD(String usuario){
-        
+    public void borrarUsuarioBBDD(String usuario) {
+
         String sql = "{call BORRARUSUARIO(?)}";
-        
+
         try {
             CallableStatement cs = conexion.getConnection().prepareCall(sql);
             cs.setString(1, usuario);
             cs.executeUpdate();
             cs.close();
             cs.closeOnCompletion();
-            
+
             conexion.desconexionBBDD();
         } catch (SQLException ex) {
             Logger.getLogger(UsuariosBBDD.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public List<modeloVentanas.Usuarios> listarUsuarios() {
+        List<modeloVentanas.Usuarios> usuarios = new ArrayList<>();
+
+        String sql = "{call listarUsuarios()}";
+
+        try {
+            CallableStatement cs = conexion.getConnection().prepareCall(sql);
+            cs.execute();
+            cs.getMoreResults();
+            ResultSet rs = cs.getResultSet();
+            while (rs.next()) {
+                modeloVentanas.Usuarios u = new Usuarios(
+                        rs.getString("nombre"),
+                        rs.getString("apellidos"),
+                        rs.getString("usuariowin"),
+                        rs.getString("xlnet"),
+                        rs.getString("correo"),
+                        rs.getInt("planta"),
+                        rs.getInt("telefono")
+                );
+                usuarios.add(u);
+            }
+            rs.close();
+            cs.close();
+            conexion.desconexionBBDD();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosBBDD.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+        return usuarios;
     }
 }
