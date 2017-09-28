@@ -93,6 +93,7 @@ public class Usuarios extends javax.swing.JFrame {
         jbAlta.setToolTipText("ALTA");
         jbAlta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.white));
         jbAlta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbAlta.setEnabled(true);
         jbAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAltaActionPerformed(evt);
@@ -203,11 +204,11 @@ public class Usuarios extends javax.swing.JFrame {
 
             },
             new String [] {
-                "NOMBRE", "APELLIDOS", "TELEFONO"
+                "NOMBRE", "APELLIDOS", "TELEFONO", "OPCIONES"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -219,6 +220,7 @@ public class Usuarios extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -273,9 +275,10 @@ public class Usuarios extends javax.swing.JFrame {
         modeloBBDD.UsuariosBBDD usuariosBBDD = new UsuariosBBDD();
         usuariosBBDD.altaUsuarioBBDD(usuario);
         //TODO 
-        /*FALTA HACER QUE GENERE EL USUARIO AUTOMATICAMENTE Y ENVIE EL CORREO CON LOS DATOS EL MISMO.
-       Y QUE SI ESTAN EN BLANCO EQUIPO Y IMPRESORA PREGUNTE SI QUEREMOS ASOCIAR UNO O EN SU DEFECTO
+        /*FALTA HACER QUE GENERE EL USUARIO AUTOMATICAMENTE Y ENVIE EL CORREO CON LOS DATOS DEL MISMO.
+       Y QUE SI ESTAN EN BLANCO EQUIPO E IMPRESORA PREGUNTE SI QUEREMOS ASOCIAR UNO O EN SU DEFECTO
        DAR DE ALTA EQUIPOS NUEVOS.
+        IMPLANTAR AUTOCOMPLETE PARA EL RESTO DE USUARIOS
          */    
     }//GEN-LAST:event_jbAltaActionPerformed
 
