@@ -33,7 +33,7 @@ class ButtonsPanel extends JPanel {
 
     public final List<JButton> buttons = new ArrayList<>();
 
-    public ButtonsPanel (){
+    public ButtonsPanel() {
         super(new FlowLayout(FlowLayout.LEFT));
         setOpaque(false);
         String option;
@@ -42,21 +42,41 @@ class ButtonsPanel extends JPanel {
             b.setFocusable(false);
             b.setRolloverEnabled(false);
             b.setText("");
-            b.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.white));
-
-            if (a.toString().equalsIgnoreCase("print")) {
-                b.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Save-icon.png")));
-
-            } else {
-                b.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Search-icon (1).png")));
-            }
+            b.setBorder(new javax.swing.border.SoftBevelBorder(
+                    javax.swing.border.BevelBorder.RAISED,
+                    java.awt.Color.white, java.awt.Color.lightGray,
+                    java.awt.Color.lightGray, java.awt.Color.white));
+            option = a.toString();
+//            if (a 
+//                
+//                este if paso 
+//                
+//                el 
+//            
+//            usuario del login
+//            
+//            
+//                ){
+//            b.setEnabled(false);
+//            }else{
+//                    switch(option){
+//                        case "UPDATE":{
+//                    b.setName("UPDATE");
+//                    b.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icono")));
+//                    break;
+//                    }
+//                    case "DELETE":{
+//                    b.setName("DELETE");
+//                    b.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icono")));
+//                    break;
+//                    }
+//                    }
+//                    }
 
             add(b);
             buttons.add(b);
         }
     }
-
-  
 
     //refesco botones
     protected void updateButtons(Object value) {
@@ -90,7 +110,7 @@ class ButtonsRenderer implements TableCellRenderer {
         return panel;
     }
 }
-//accion boton print
+//accion boton update
 
 class UpdateAction extends AbstractAction {
 
@@ -116,14 +136,11 @@ class UpdateAction extends AbstractAction {
                 JOptionPane.showMessageDialog(table, "Printing: " + o);
                 break;
             }
-            default: {
-                JOptionPane.showMessageDialog(table, "default: " + o);
-            }
         }
     }
 }
 
-//acccion boton editar
+//acccion boton delete
 class DeleteAction extends AbstractAction {
 
     private final JTable table;
@@ -143,9 +160,6 @@ class DeleteAction extends AbstractAction {
             case "tUsuarios": {
                 JOptionPane.showMessageDialog(table, "Editing: " + o);
                 break;
-            }
-            default: {
-                JOptionPane.showMessageDialog(table, "default: " + o);
             }
         }
     }
@@ -184,22 +198,37 @@ class ButtonsEditor extends AbstractCellEditor implements TableCellEditor {
         super();
         this.panel = new ButtonsPanel();
         this.table = table;
-        panel.buttons.get(0).setAction(new UpdateAction(table));
-        panel.buttons.get(1).setAction(new DeleteAction(table));
-        panel.buttons.get(0).setText("");
-        panel.buttons.get(1).setText("");
-        panel.buttons.get(1).setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Search-icon (1).png")));
-        panel.buttons.get(1).setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.white));
-        panel.buttons.get(0).setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.white));
-        panel.buttons.get(0).setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Save-icon.png")));
-        EditingStopHandler handler = new EditingStopHandler();
-        panel.buttons.stream().map((b) -> {
-            b.addMouseListener(handler);
-            return b;
-        }).forEachOrdered((b) -> {
-            b.addActionListener(handler);
-        });
-        panel.addMouseListener(handler);
+ List<JButton> buttons = new ArrayList<>(panel.buttons);
+        String option;
+        for (JButton c : buttons) {
+            option = c.getName();
+            c.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.white));
+//            if (tabla.usuario.equalsIgnoreCase("usera")) {
+//                c.setEnabled(false);
+//            } else {
+//                switch (option) {
+//                    case "UPDATE":
+//                        c.setAction(new UpdateAction(table));
+//                        c.setText("");
+//                        c.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Save-icon.png")));
+//                        break;
+//                        
+//                    case "DELETE":
+//                        c.setAction(new DeleteAction(table));
+//                        c.setText("");
+//                        c.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Search-icon (1).png")));
+//                        break;
+//                }
+//                EditingStopHandler handler = new EditingStopHandler();
+//                panel.buttons.stream().map((b) -> {
+//                    b.addMouseListener(handler);
+//                    return b;
+//                }).forEachOrdered((b) -> {
+//                    b.addActionListener(handler);
+//                });
+//                panel.addMouseListener(handler);
+//            }
+        }
     }
 
     @Override

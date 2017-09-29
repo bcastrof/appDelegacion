@@ -275,18 +275,27 @@ public class Vusuarios extends javax.swing.JFrame {
     private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
         Date fecha = new Date();
         SimpleDateFormat formatFecha = new SimpleDateFormat("dd/mm/yyyy");
+       
         modeloVentanas.Usuarios usuario = new modeloVentanas.Usuarios(jtNombre.getText(), jtApellidos.getText(), jtUserwin.getText(),
                 jtXlnet.getText(), jtCorreo.getText(),
                 Integer.parseInt(jtPlanta.getText()), Integer.parseInt(jtTelefono.getText()));
 
         modeloBBDD.UsuariosBBDD usuariosBBDD = new UsuariosBBDD();
-        usuariosBBDD.altaUsuarioBBDD(usuario);
-        //TODO 
+        if(usuariosBBDD.altaUsuarioBBDD(usuario)==true){
+                  //TODO 
         /*FALTA HACER QUE GENERE EL USUARIO AUTOMATICAMENTE Y ENVIE EL CORREO CON LOS DATOS DEL MISMO.
        Y QUE SI ESTAN EN BLANCO EQUIPO E IMPRESORA PREGUNTE SI QUEREMOS ASOCIAR UNO O EN SU DEFECTO
        DAR DE ALTA EQUIPOS NUEVOS.
         IMPLANTAR AUTOCOMPLETE PARA EL RESTO DE USUARIOS
          */
+            //pongo un panel informativo
+            System.out.println("ok");
+            limpiar();
+            tMusuarios.setRowCount(0);
+            listarUsuarios();
+        }else{
+            //pongo panel informativo para que busquen el error.
+        }
     }//GEN-LAST:event_jbAltaActionPerformed
 
     /**
@@ -336,6 +345,18 @@ public class Vusuarios extends javax.swing.JFrame {
             });
         });
        
+    }
+    
+    private void limpiar(){
+        jtApellidos.setText("");
+        jtCorreo.setText("");
+        jtEjImp.setText("");
+        jtEjPc.setText("");
+        jtNombre.setText("");
+        jtPlanta.setText("");
+        jtTelefono.setText("");
+        jtUserwin.setText("");
+        jtXlnet.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

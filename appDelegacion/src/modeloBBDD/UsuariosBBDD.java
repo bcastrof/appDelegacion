@@ -24,7 +24,7 @@ public class UsuariosBBDD {
 
     final modeloBBDD.ConexionBBDD conexion = new ConexionBBDD();
 
-    public void altaUsuarioBBDD(modeloVentanas.Usuarios usuario) {
+    public boolean altaUsuarioBBDD(modeloVentanas.Usuarios usuario) {
         try {
             String sql = "{call public.insertarUsuario(?,?,?,?,?,?,?)}";
 
@@ -42,9 +42,10 @@ public class UsuariosBBDD {
             cs.close();
 
             conexion.desconexionBBDD();
-
+          return true;
         } catch (SQLException ex) {
             Logger.getLogger(UsuariosBBDD.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
 

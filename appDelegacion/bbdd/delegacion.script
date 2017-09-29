@@ -58,4 +58,6 @@ GRANT DBA TO "bcastrof"
 SET SCHEMA SYSTEM_LOBS
 INSERT INTO BLOCKS VALUES(0,2147483647,0)
 SET SCHEMA PUBLIC
+INSERT INTO USUARIOS VALUES('bruno','castro','hfh','hffh','bcastrof@lalalal',4,17782)
 INSERT INTO USUARIOS VALUES('y','yt','r','t','yt',4,4)
+INSERT INTO USUARIOS VALUES('esto','es','una','prueba','insercion',1,2)
