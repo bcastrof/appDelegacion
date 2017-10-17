@@ -5,8 +5,8 @@
  */
 package modeloVentanas;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 
 /**
  *
@@ -14,15 +14,6 @@ import java.util.List;
  */
 public class Usuarios {
 
-    AccesoUsuarios accesUser;
-
-    /*relacion con equipos lista por un usuario puede tener varios equipos pero
-    pero un equipo es de un usuario.*/
-    private List<Equipos> equipos = new ArrayList<>();
-
-    /*relacion con impresoras lista porque un usuario puede tener varias 
-    impresoras pero esta es de un solo usuario.*/
-    private List<Impresoras> impresoras = new ArrayList<>();
 
     /*Atributos de la clase*/
     private String nombre;
@@ -104,25 +95,68 @@ public class Usuarios {
         this.telefono = telefono;
     }
 
-    public AccesoUsuarios getAccesUser() {
-        return accesUser;
+        public String password() {
+
+        String caracteres = "TRWAGMYFPDXBNJZSQVHLCKEtrwagmyfpdxbnjzsqvhlcke1234567890";
+        StringBuilder pass = new StringBuilder();
+        Random rnd = new Random();
+
+        while (pass.length() < 8) {
+            int password = (int) (rnd.nextFloat() * (float) caracteres.length());
+            pass.append(caracteres.charAt(password));
+        }
+        return pass.toString();
     }
 
-    public void setAccesUser(AccesoUsuarios accesUser) {
-        this.accesUser = accesUser;
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 43 * hash + Objects.hashCode(this.nombre);
+        hash = 43 * hash + Objects.hashCode(this.apellidos);
+        hash = 43 * hash + Objects.hashCode(this.userwin);
+        hash = 43 * hash + Objects.hashCode(this.xlnet);
+        hash = 43 * hash + Objects.hashCode(this.correo);
+        hash = 43 * hash + this.planta;
+        hash = 43 * hash + this.telefono;
+        return hash;
     }
 
-    public void añadirAcceso (AccesoUsuarios accesoUsuario){
-        accesUser.setUser(this);
-    }
- 
-    public void añadirImpresora (Impresoras impresora){
-        impresoras.add(impresora);
-        impresora.setUsuario(this);
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuarios other = (Usuarios) obj;
+        if (this.planta != other.planta) {
+            return false;
+        }
+        if (this.telefono != other.telefono) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.apellidos, other.apellidos)) {
+            return false;
+        }
+        if (!Objects.equals(this.userwin, other.userwin)) {
+            return false;
+        }
+        if (!Objects.equals(this.xlnet, other.xlnet)) {
+            return false;
+        }
+        if (!Objects.equals(this.correo, other.correo)) {
+            return false;
+        }
+        return true;
     }
     
-    public void añadirEquipo (Equipos equipo){
-        equipos.add(equipo);
-        equipo.setUsuario(this);
-    }
+    
+    
 }

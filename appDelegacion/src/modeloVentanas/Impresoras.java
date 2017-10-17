@@ -5,21 +5,13 @@
  */
 package modeloVentanas;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author bcastrof
  */
 public class Impresoras {
 
-    /*relacion con usuario una impresora pertenece a un usuario*/
-    private Usuarios usuario;
 
-    /*relacion con repuestos lista porque una impresora puede tener varios 
-    repuestos*/
-    private List<Repuestos> repuestos = new ArrayList<>();
 
     /*atributos de la clase.*/
     private String ej_impresora;
@@ -28,6 +20,8 @@ public class Impresoras {
     private Long planta;
     private String color;
     private String tipo;
+    private String usuarioWin;
+    private int idFoto;
 
     /*Constructore*/
     public Impresoras() {
@@ -91,16 +85,5 @@ public class Impresoras {
         this.tipo = tipo;
     }
 
-    public Usuarios getUsuario() {
-        return usuario;
-    }
 
-    public void setUsuario(Usuarios usuario) {
-        this.usuario = usuario;
-    }
-
-    public void añadirRepuesto(Repuestos repuesto) {
-        repuestos.add(repuesto);
-        repuesto.setImpresora(this);
-    }
 }

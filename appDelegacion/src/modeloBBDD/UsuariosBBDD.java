@@ -5,7 +5,7 @@
  */
 package modeloBBDD;
 
-import java.security.interfaces.RSAKey;
+
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modeloVentanas.Usuarios;
-import modeloVentanas.Usuarios;
 
 /**
  *
@@ -22,11 +21,10 @@ import modeloVentanas.Usuarios;
  */
 public class UsuariosBBDD {
 
-    final modeloBBDD.ConexionBBDD conexion = new ConexionBBDD();
-
     public boolean altaUsuarioBBDD(modeloVentanas.Usuarios usuario) {
         try {
-            String sql = "{call public.insertarUsuario(?,?,?,?,?,?,?)}";
+            modeloBBDD.ConexionBBDD conexion = new ConexionBBDD();
+            String sql = "{call insertarUsuario(?,?,?,?,?,?,?)}";
 
             CallableStatement cs = conexion.getConnection().prepareCall(sql);
 
@@ -42,7 +40,7 @@ public class UsuariosBBDD {
             cs.close();
 
             conexion.desconexionBBDD();
-          return true;
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(UsuariosBBDD.class.getName()).log(Level.SEVERE, null, ex);
             return false;
@@ -51,9 +49,10 @@ public class UsuariosBBDD {
 
     public void modificarUsuarioBBDD(modeloVentanas.Usuarios usuario) {
 
-        String sql = "{call public.MODIFICARUSUARIO(?,?,?,?,?,?,?)}";
+        String sql = "{call MODIFICARUSUARIO(?,?,?,?,?,?,?)}";
 
         try {
+            modeloBBDD.ConexionBBDD conexion = new ConexionBBDD();
             CallableStatement cs = conexion.getConnection().prepareCall(sql);
 
             cs.setString(1, usuario.getNombre());
@@ -65,7 +64,6 @@ public class UsuariosBBDD {
             cs.setInt(7, usuario.getTelefono());
 
             cs.executeUpdate();
-            cs.closeOnCompletion();
             cs.close();
             conexion.desconexionBBDD();
         } catch (SQLException ex) {
@@ -73,21 +71,23 @@ public class UsuariosBBDD {
         }
     }
 
-    public void borrarUsuarioBBDD(String usuario) {
-
-        String sql = "{call BORRARUSUARIO(?)}";
+    public boolean borrarUsuarioBBDD(Usuarios usuario) {
 
         try {
+            modeloBBDD.ConexionBBDD conexion = new ConexionBBDD();
+            String sql = "{call BORRARUSUARIO(?)}";
             CallableStatement cs = conexion.getConnection().prepareCall(sql);
-            cs.setString(1, usuario);
+            cs.setString(1, usuario.getUserwin());
             cs.executeUpdate();
             cs.close();
-            cs.closeOnCompletion();
 
             conexion.desconexionBBDD();
+
         } catch (SQLException ex) {
             Logger.getLogger(UsuariosBBDD.class.getName()).log(Level.SEVERE, null, ex);
+
         }
+        return true;
     }
 
     public List<modeloVentanas.Usuarios> listarUsuarios() {
@@ -96,6 +96,7 @@ public class UsuariosBBDD {
         String sql = "{call listarUsuarios()}";
 
         try {
+            modeloBBDD.ConexionBBDD conexion = new ConexionBBDD();
             CallableStatement cs = conexion.getConnection().prepareCall(sql);
             cs.execute();
             cs.getMoreResults();
@@ -112,14 +113,19 @@ public class UsuariosBBDD {
                 );
                 usuarios.add(u);
             }
-            rs.close();
             cs.close();
+
+            rs.close();
+
             conexion.desconexionBBDD();
 
         } catch (SQLException ex) {
             Logger.getLogger(UsuariosBBDD.class
                     .getName()).log(Level.SEVERE, null, ex);
+
         }
+
         return usuarios;
+
     }
 }

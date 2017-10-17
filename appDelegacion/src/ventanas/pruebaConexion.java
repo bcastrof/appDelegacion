@@ -21,17 +21,18 @@ public class pruebaConexion {
     public static void main(String[] args) throws SQLException {
        ConexionBBDD con = new ConexionBBDD();
        
-       con.getConnection();
+     con.getConnection();
+     con.desconexionBBDD();
        
 //       String sql = "{call public.insertarUsuario(?,?,?,?,?,?,?)}";
 //        
 //        CallableStatement cs = con.getConnection().prepareCall(sql);
 //
-//            cs.setString(1, "esto");
-//            cs.setString(2, "es");
-//            cs.setString(3, "una");
-//            cs.setString(4, "prueba");
-//            cs.setString(5, "insercion");
+//            cs.setString(1, "esto1");
+//            cs.setString(2, "es1");
+//            cs.setString(3, "una1");
+//            cs.setString(4, "prueba1");
+//            cs.setString(5, "insercion1");
 //            cs.setInt(6, 1);
 //            cs.setInt(7, 2);
 //            
@@ -39,5 +40,11 @@ public class pruebaConexion {
 //            cs.close();
 //
 //            con.desconexionBBDD();  
-    }  
+//            String clave =  "H4sjf3cK";
+//             int hashCode = clave.hashCode();
+//             System.out.println(hashCode);
+
+    }       
+   
+    
 }

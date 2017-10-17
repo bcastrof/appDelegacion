@@ -11,8 +11,7 @@ package modeloVentanas;
  */
 public class Equipos {
 
-    /*relacion con usuarios un equipo pertenece a un usuario.*/
-    private Usuarios usuario;
+
 
     /*atributos de la clase */
     private String ej_equipo;
@@ -22,6 +21,7 @@ public class Equipos {
     private String descripcion;
     private String fecha_obscelencia;
     private String renting;
+    private String usuarioWin;
 
     /*Constructores*/
     public Equipos() {
@@ -94,13 +94,7 @@ public class Equipos {
         this.renting = renting;
     }
 
-    public Usuarios getUsuario() {
-        return usuario;
-    }
 
-    public void setUsuario(Usuarios usuario) {
-        this.usuario = usuario;
-    }
 
     public void añadirUsuario(Usuarios usuario){
         

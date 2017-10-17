@@ -10,9 +10,7 @@ package modeloVentanas;
  * @author bcastrof
  */
 public class AccesoUsuarios {
-
-    /*relacion con usuarios*/
-    private Usuarios user;
+      private Usuarios usuario;
 
     /*atributos de la clase*/
     private String userWin;
@@ -27,15 +25,6 @@ public class AccesoUsuarios {
         this.userWin = userWin;
         this.password = password;
         this.fechaPassword = fechaPassword;
-    }
-
-    /* Geters y Seters de los atributos*/
-    public Usuarios getUser() {
-        return user;
-    }
-
-    public void setUser(Usuarios user) {
-        this.user = user;
     }
 
     public String getUserWin() {
@@ -62,7 +51,11 @@ public class AccesoUsuarios {
         this.fechaPassword = fechaPassword;
     }
 
-    private void añadirUsuario(Usuarios usuario) {
-        user.setAccesUser(this);
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
     }
 }
