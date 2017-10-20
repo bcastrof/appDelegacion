@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import modeloBBDD.UsuariosBBDD;
 import modeloBBDD.AccessoUsuariosBBDD;
 import modeloVentanas.AccesoUsuarios;
+import modeloVentanas.Impresoras;
 import modeloVentanas.Usuarios;
 
 /**
@@ -26,21 +27,33 @@ import modeloVentanas.Usuarios;
  */
 public class Vusuarios extends javax.swing.JFrame {
 
-    private final UsuariosBBDD usuariosBBDD = new UsuariosBBDD();
-    private final AccessoUsuariosBBDD accessoUsuariosBBDD = new AccessoUsuariosBBDD();
+    //modelo tabla tUsuarios.
     private DefaultTableModel tMusuarios;
-    private List<Usuarios> usuarios = new ArrayList<>();
+    //alta nuevo usuario.
     private Usuarios usuario = new Usuarios();
+    //para la modificacion de usuario.
     private Usuarios oldUsuario = new Usuarios();
+    //para enviar la informacion al usuario de sus datos de acceso
+    private AccesoUsuarios accesoUsuario = new AccesoUsuarios();
+    //acceso usuario que se utiliza para insertar los datos en tabla.
     private AccesoUsuarios accesoUsuarioI = new AccesoUsuarios();
+    //para la carga de usuarios en la tabla.
+    private List<Usuarios> usuarios = new ArrayList<>();
+    //para buscar los usuarios por clave una vez cargados
     private final HashMap<String, Usuarios> usuarioMap = new HashMap<>();
+    //para la insercion de un nuevo usuario en la tabla usuarios.
+    private final UsuariosBBDD usuariosBBDD = new UsuariosBBDD();
+    //para la insercion de un nuevo accessoUsuarios en tabla.
+    private final AccessoUsuariosBBDD accessoUsuariosBBDD = new AccessoUsuariosBBDD();
+    //referencia de busqueda del hashMap.
     private String clave;
+
     //int tiempoRepeticion = 6000;
     public Vusuarios() {
         initComponents();
         listarUsuarios();
-       // timer.start();
-       
+        // timer.start();
+
     }
 
     /**
@@ -287,20 +300,42 @@ public class Vusuarios extends javax.swing.JFrame {
         //genero y codifico la clave
         String pass = usuario.password();
         int hashCode = pass.hashCode();
-        //creo nuevo usuario e inserto en tabla 
+        //creo nuevo usuario
         usuario = new Usuarios(jtNombre.getText(), jtApellidos.getText(),
                 jtUserwin.getText(), jtXlnet.getText(), jtCorreo.getText(),
                 Integer.parseInt(jtPlanta.getText()), Integer.parseInt(jtTelefono.getText()));
+        //añado usuario al array de usuarios
+        usuarios.add(usuario);
+        //añado usuario al hashmap
+        usuarioMap.put(usuario.getUserwin(), usuario);
+        //inserto usuario en tabla
         usuariosBBDD.altaUsuarioBBDD(usuario);
+        //creo acceso usuario con los datos a enviar al usuario
+        accesoUsuario = new AccesoUsuarios(jtUserwin.getText(), pass, formato.format(fechaHoy));
         //creo nuevo acceso al usuario anterior e inserto en tabla
         accesoUsuarioI = new AccesoUsuarios(jtUserwin.getText(), Integer.toString(hashCode), formato.format(fechaHoy));
-        accesoUsuarioI.setUsuario(usuario);
+        //enlazo usuario con acceso usuario
+        usuario.setAccesoUsuario(accesoUsuarioI);
+        //inserto acceso usuario en tabla
         accessoUsuariosBBDD.altaAccessoUsuariosBBD(accesoUsuarioI);
 
         System.out.println(hashCode + " " + pass);
 
         if (jtEjImp.getText().equals("") || jtEjpc.getText().equals("")) {
+            /*
+            aqui tengo que abrir una ventana que me permita dar de alta las dos
+            cosas o que me abra las ventanas correspondientes y asi asociarlas 
+            despues con el usuario.
+             */
             System.out.println("he llegado aki");
+        } else {
+            /*aki tengo que hacer una consulta a tabla para rescatar los datos
+            y asociarlos con el usuario.
+             */
+            Impresoras i = new Impresoras();
+            i.setEj_impresora("lol");
+            usuario.añadirImpresora(i);
+            i.añadirUsuario(usuario);
         }
 
         limpiar();
@@ -382,7 +417,8 @@ public class Vusuarios extends javax.swing.JFrame {
         tMusuarios.setRowCount(0);
         listarUsuarios();
     }
-   
+
+    //TODO  No sé si voy a implatar esto. sirve para hacer un refresco auto.
 //    Timer timer = new Timer (tiempoRepeticion, new ActionListener () 
 //{ 
 //    public void actionPerformed(ActionEvent e) 
@@ -391,7 +427,6 @@ public class Vusuarios extends javax.swing.JFrame {
 //    listarUsuarios();
 //     } 
 //}); 
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton altaNueva;

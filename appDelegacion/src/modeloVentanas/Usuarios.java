@@ -5,6 +5,8 @@
  */
 package modeloVentanas;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -23,7 +25,9 @@ public class Usuarios {
     private String correo;
     private int planta;
     private int telefono;
-
+    
+    private AccesoUsuarios accesoUsuario;
+    private List <Impresoras> impresoras = new ArrayList<>();
     /*Constructores*/
     public Usuarios() {
     }
@@ -95,6 +99,15 @@ public class Usuarios {
         this.telefono = telefono;
     }
 
+    public AccesoUsuarios getAccesoUsuario() {
+        return accesoUsuario;
+    }
+
+    public void setAccesoUsuario(AccesoUsuarios accesoUsuario) {
+        this.accesoUsuario = accesoUsuario;
+    }
+    
+
         public String password() {
 
         String caracteres = "TRWAGMYFPDXBNJZSQVHLCKEtrwagmyfpdxbnjzsqvhlcke1234567890";
@@ -107,6 +120,10 @@ public class Usuarios {
         }
         return pass.toString();
     }
+        
+        public void añadirImpresora(Impresoras impresora){
+            impresoras.add(impresora);
+        }
 
     @Override
     public int hashCode() {

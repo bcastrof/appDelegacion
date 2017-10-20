@@ -5,6 +5,9 @@
  */
 package modeloVentanas;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author bcastrof
@@ -22,7 +25,7 @@ public class Impresoras {
     private String tipo;
     private String usuarioWin;
     private int idFoto;
-
+    private List <Usuarios> usuarios = new  ArrayList<>();
     /*Constructore*/
     public Impresoras() {
     }
@@ -85,5 +88,8 @@ public class Impresoras {
         this.tipo = tipo;
     }
 
+    public void añadirUsuario(Usuarios usuario){
+        usuarios.add(usuario);
+    }
 
 }
