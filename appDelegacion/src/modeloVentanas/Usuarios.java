@@ -6,6 +6,7 @@
 package modeloVentanas;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -28,6 +29,7 @@ public class Usuarios {
     
     private AccesoUsuarios accesoUsuario;
     private List <Impresoras> impresoras = new ArrayList<>();
+    private HashMap<String, Impresoras> impresorasmap = new HashMap<>();
     /*Constructores*/
     public Usuarios() {
     }
@@ -123,7 +125,12 @@ public class Usuarios {
         
         public void añadirImpresora(Impresoras impresora){
             impresoras.add(impresora);
+            impresorasmap.put(impresora.getEj_impresora(), impresora);
         }
+      
+        
+        
+ 
 
     @Override
     public int hashCode() {

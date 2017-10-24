@@ -18,21 +18,20 @@ public class Equipos {
     private String marca;
     private String modelo;
     private Long planta;
-    private String descripcion;
     private String fecha_obscelencia;
     private String renting;
     private String usuarioWin;
-
+    
+    private Usuarios usuario;
     /*Constructores*/
     public Equipos() {
     }
 
-    public Equipos(String ej_equipo, String marca, String modelo, Long planta, String descripcion, String fecha_obscelencia, String renting) {
+    public Equipos(String ej_equipo, String marca, String modelo, Long planta, String fecha_obscelencia, String renting) {
         this.ej_equipo = ej_equipo;
         this.marca = marca;
         this.modelo = modelo;
         this.planta = planta;
-        this.descripcion = descripcion;
         this.fecha_obscelencia = fecha_obscelencia;
         this.renting = renting;
     }
@@ -69,15 +68,7 @@ public class Equipos {
     public void setPlanta(Long planta) {
         this.planta = planta;
     }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
+    
     public String getFecha_obscelencia() {
         return fecha_obscelencia;
     }
@@ -94,9 +85,20 @@ public class Equipos {
         this.renting = renting;
     }
 
-
-
-    public void añadirUsuario(Usuarios usuario){
-        
+    public String getUsuarioWin() {
+        return usuarioWin;
     }
+
+    public void setUsuarioWin(String usuarioWin) {
+        this.usuarioWin = usuarioWin;
+    }
+
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
+    
 }

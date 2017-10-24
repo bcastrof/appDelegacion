@@ -53,7 +53,7 @@ public class Vusuarios extends javax.swing.JFrame {
         initComponents();
         listarUsuarios();
         // timer.start();
-
+      //  jPestanas.setEnabledAt(1, false); desahablitar un pestaña posicion tipo array
     }
 
     /**
@@ -67,10 +67,8 @@ public class Vusuarios extends javax.swing.JFrame {
 
         jPanelImage = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tUsuarios = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
+        jPestanas = new javax.swing.JTabbedPane();
+        jpUsuarios = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -94,6 +92,53 @@ public class Vusuarios extends javax.swing.JFrame {
         altaNueva = new javax.swing.JButton();
         guardarCambios = new javax.swing.JButton();
         borraRegistro = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tUsuarios = new javax.swing.JTable();
+        jpEquipos = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jtEjEqp = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jtModEqp = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jtMarEqp = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jtUserwinEqp = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jtObsEqp = new javax.swing.JTextField();
+        jcRentingEqp = new javax.swing.JCheckBox();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tEquipos = new javax.swing.JTable();
+        altaNuevaEqp = new javax.swing.JButton();
+        guardarCambiosEqp = new javax.swing.JButton();
+        borraRegistroeqp = new javax.swing.JButton();
+        limpiarFormularioEqp = new javax.swing.JButton();
+        buscarEqp = new javax.swing.JButton();
+        jpImp = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jtEImpr = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jtMarImps = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jtModImps = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jtUserwinImps = new javax.swing.JTextField();
+        jcRentingImps = new javax.swing.JCheckBox();
+        jFotoImps = new javax.swing.JLabel();
+        altaNuevaEqp1 = new javax.swing.JButton();
+        guardarCambiosEqp1 = new javax.swing.JButton();
+        borraRegistroeqp1 = new javax.swing.JButton();
+        limpiarFormularioEqp1 = new javax.swing.JButton();
+        buscarEqp1 = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tEquipos1 = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Libreta de Contactos");
@@ -105,10 +150,123 @@ public class Vusuarios extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon("D:\\pogramacion\\Proyecto_Delgacion\\appDelegacion\\appDelegacion\\imagenes\\logo_gob-iloveimg-resized.jpg")); // NOI18N
         jPanelImage.add(jLabel1);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.white));
+        jpUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jScrollPane2.setBorder(null);
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel2.setText("NOMBRE:");
+        jpUsuarios.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 26, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel3.setText("APELLIDOS:");
+        jpUsuarios.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 26, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel4.setText("CORREO:");
+        jpUsuarios.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 104, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel5.setText("PLANTA:");
+        jpUsuarios.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 65, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel6.setText("CONTACTO:");
+        jpUsuarios.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 65, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel7.setText("USUARIO:");
+        jpUsuarios.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 143, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("XLNET:");
+        jpUsuarios.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 143, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel9.setText("EJPC:");
+        jpUsuarios.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 180, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel10.setText("EJIMP:");
+        jpUsuarios.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 180, -1, -1));
+
+        jtNombre.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jpUsuarios.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 23, 250, -1));
+
+        jtApellidos.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jpUsuarios.add(jtApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 23, 250, -1));
+
+        jtCorreo.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jpUsuarios.add(jtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 101, 580, -1));
+
+        jtTelefono.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jpUsuarios.add(jtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 62, 250, -1));
+
+        jtPlanta.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jpUsuarios.add(jtPlanta, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 62, 22, -1));
+
+        jtUserwin.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jpUsuarios.add(jtUserwin, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 140, 250, -1));
+
+        jtXlnet.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jpUsuarios.add(jtXlnet, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 140, 250, -1));
+
+        jtEjpc.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jpUsuarios.add(jtEjpc, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 177, 250, -1));
+
+        jtEjImp.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jpUsuarios.add(jtEjImp, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 177, 250, -1));
+
+        buscar.setForeground(new java.awt.Color(240, 240, 240));
+        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Search-35.png"))); // NOI18N
+        buscar.setToolTipText("BUSCAR");
+        buscar.setBorderPainted(false);
+        buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscar.setOpaque(false);
+        jpUsuarios.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, -1, -1));
+
+        limpiarFormulario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Eraser-35.png"))); // NOI18N
+        limpiarFormulario.setToolTipText("LIMPIAR FORMULARIO");
+        limpiarFormulario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        limpiarFormulario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarFormularioActionPerformed(evt);
+            }
+        });
+        jpUsuarios.add(limpiarFormulario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, -1, -1));
+
+        altaNueva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Save-35 (1).png"))); // NOI18N
+        altaNueva.setToolTipText("NUEVA ALTA");
+        altaNueva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        altaNueva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                altaNuevaActionPerformed(evt);
+            }
+        });
+        jpUsuarios.add(altaNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, -1));
+
+        guardarCambios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Save as-35 (1).png"))); // NOI18N
+        guardarCambios.setToolTipText("GURADAR CAMBIOS");
+        guardarCambios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        guardarCambios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarCambiosActionPerformed(evt);
+            }
+        });
+        jpUsuarios.add(guardarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, -1));
+
+        borraRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Trash Can-35.png"))); // NOI18N
+        borraRegistro.setToolTipText("BORRAR REGISTRO");
+        borraRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        borraRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borraRegistroActionPerformed(evt);
+            }
+        });
+        jpUsuarios.add(borraRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, -1, -1));
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.white));
+
+        tUsuarios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.white));
         tUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -134,110 +292,266 @@ public class Vusuarios extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tUsuarios);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.white));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jpUsuarios.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 650, 240));
 
-        jLabel2.setText("NOMBRE:");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 26, -1, -1));
+        jPestanas.addTab("USUARIOS", jpUsuarios);
 
-        jLabel3.setText("APELLIDOS:");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 26, -1, -1));
+        jpEquipos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setText("CORREO:");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 104, -1, -1));
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel11.setText("EJ:");
+        jpEquipos.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 26, -1, -1));
+        jpEquipos.add(jtEjEqp, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 23, 250, -1));
 
-        jLabel5.setText("PLANTA:");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 65, -1, -1));
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel12.setText("MODELO:");
+        jpEquipos.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 65, -1, -1));
+        jpEquipos.add(jtModEqp, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 62, 250, -1));
 
-        jLabel6.setText("CONTACTO:");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 65, -1, -1));
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel13.setText("MARCA:");
+        jpEquipos.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 26, -1, -1));
+        jpEquipos.add(jtMarEqp, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 23, 250, -1));
 
-        jLabel7.setText("USUARIO:");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 143, -1, -1));
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel14.setText("USUARIO:");
+        jpEquipos.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 104, -1, -1));
+        jpEquipos.add(jtUserwinEqp, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 101, 250, -1));
 
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("XLNET:");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 143, -1, -1));
+        jLabel15.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel15.setText("PLANTA:");
+        jpEquipos.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 65, -1, -1));
+        jpEquipos.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 62, 22, -1));
 
-        jLabel9.setText("EJPC:");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 180, -1, -1));
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel16.setText("OBSCELE:");
+        jpEquipos.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 143, -1, -1));
+        jpEquipos.add(jtObsEqp, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 140, 250, -1));
 
-        jLabel10.setText("EJIMP:");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 180, -1, -1));
-        jPanel3.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 23, 250, -1));
-        jPanel3.add(jtApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 23, 250, -1));
-        jPanel3.add(jtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 101, 580, -1));
-        jPanel3.add(jtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 62, 250, -1));
-        jPanel3.add(jtPlanta, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 62, 250, -1));
-        jPanel3.add(jtUserwin, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 140, 250, -1));
-        jPanel3.add(jtXlnet, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 140, 250, -1));
-        jPanel3.add(jtEjpc, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 177, 250, -1));
-        jPanel3.add(jtEjImp, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 177, 250, -1));
+        jcRentingEqp.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jcRentingEqp.setText("RENTING");
+        jpEquipos.add(jcRentingEqp, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 104, -1, -1));
 
-        buscar.setForeground(new java.awt.Color(240, 240, 240));
-        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Search-35.png"))); // NOI18N
-        buscar.setToolTipText("BUSCAR");
-        buscar.setBorder(null);
-        buscar.setBorderPainted(false);
-        buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        buscar.setOpaque(false);
-        jPanel3.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 210, -1, -1));
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.white));
 
-        limpiarFormulario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Eraser-35.png"))); // NOI18N
-        limpiarFormulario.setToolTipText("LIMPIAR FORMULARIO");
-        limpiarFormulario.setBorder(null);
-        limpiarFormulario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        limpiarFormulario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                limpiarFormularioActionPerformed(evt);
+        tEquipos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.white));
+        tEquipos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "EJ", "MARCA", "MODELO"
+            }
+        ));
+        tEquipos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tEquiposMouseClicked(evt);
             }
         });
-        jPanel3.add(limpiarFormulario, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 210, -1, -1));
+        jScrollPane1.setViewportView(tEquipos);
 
-        altaNueva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Save-35 (1).png"))); // NOI18N
-        altaNueva.setToolTipText("NUEVA ALTA");
-        altaNueva.setBorder(null);
-        altaNueva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        altaNueva.setNextFocusableComponent(jtNombre);
-        altaNueva.addActionListener(new java.awt.event.ActionListener() {
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+        );
+
+        jpEquipos.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 224, 652, 270));
+
+        altaNuevaEqp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Save-35 (1).png"))); // NOI18N
+        altaNuevaEqp.setToolTipText("NUEVA ALTA");
+        altaNuevaEqp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        altaNuevaEqp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                altaNuevaActionPerformed(evt);
+                altaNuevaEqpActionPerformed(evt);
             }
         });
-        jPanel3.add(altaNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
+        jpEquipos.add(altaNuevaEqp, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
 
-        guardarCambios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Save as-35 (1).png"))); // NOI18N
-        guardarCambios.setToolTipText("GURADAR CAMBIOS");
-        guardarCambios.setBorder(null);
-        guardarCambios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        guardarCambios.addActionListener(new java.awt.event.ActionListener() {
+        guardarCambiosEqp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Save as-35 (1).png"))); // NOI18N
+        guardarCambiosEqp.setToolTipText("GURADAR CAMBIOS");
+        guardarCambiosEqp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        guardarCambiosEqp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarCambiosActionPerformed(evt);
+                guardarCambiosEqpActionPerformed(evt);
             }
         });
-        jPanel3.add(guardarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
+        jpEquipos.add(guardarCambiosEqp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
 
-        borraRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Trash Can-35.png"))); // NOI18N
-        borraRegistro.setToolTipText("BORRAR REGISTRO");
-        borraRegistro.setBorder(null);
-        borraRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        borraRegistro.addActionListener(new java.awt.event.ActionListener() {
+        borraRegistroeqp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Trash Can-35.png"))); // NOI18N
+        borraRegistroeqp.setToolTipText("BORRAR REGISTRO");
+        borraRegistroeqp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        borraRegistroeqp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                borraRegistroActionPerformed(evt);
+                borraRegistroeqpActionPerformed(evt);
             }
         });
-        jPanel3.add(borraRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, -1));
+        jpEquipos.add(borraRegistroeqp, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
+
+        limpiarFormularioEqp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Eraser-35.png"))); // NOI18N
+        limpiarFormularioEqp.setToolTipText("LIMPIAR FORMULARIO");
+        limpiarFormularioEqp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        limpiarFormularioEqp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarFormularioEqpActionPerformed(evt);
+            }
+        });
+        jpEquipos.add(limpiarFormularioEqp, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, -1, -1));
+
+        buscarEqp.setForeground(new java.awt.Color(240, 240, 240));
+        buscarEqp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Search-35.png"))); // NOI18N
+        buscarEqp.setToolTipText("BUSCAR");
+        buscarEqp.setBorderPainted(false);
+        buscarEqp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscarEqp.setOpaque(false);
+        jpEquipos.add(buscarEqp, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, -1, -1));
+
+        jPestanas.addTab("EQUIPOS", jpEquipos);
+
+        jpImp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel17.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel17.setText("EJ:");
+        jpImp.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 26, -1, -1));
+        jpImp.add(jtEImpr, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 23, 250, -1));
+
+        jLabel18.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel18.setText("MARCA:");
+        jpImp.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 26, -1, -1));
+        jpImp.add(jtMarImps, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 23, 250, -1));
+        jpImp.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 62, 22, -1));
+
+        jLabel19.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel19.setText("PLANTA:");
+        jpImp.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 65, -1, -1));
+        jpImp.add(jtModImps, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 62, 250, -1));
+
+        jLabel20.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel20.setText("MODELO:");
+        jpImp.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 65, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabel21.setText("TIPO:");
+        jpImp.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 104, -1, -1));
+        jpImp.add(jtUserwinImps, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 101, 250, -1));
+
+        jcRentingImps.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jcRentingImps.setText("COLOR");
+        jpImp.add(jcRentingImps, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 104, -1, -1));
+
+        jFotoImps.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jFotoImps.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jpImp.add(jFotoImps, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 65, 210, 90));
+
+        altaNuevaEqp1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Save-35 (1).png"))); // NOI18N
+        altaNuevaEqp1.setToolTipText("NUEVA ALTA");
+        altaNuevaEqp1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        altaNuevaEqp1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                altaNuevaEqp1ActionPerformed(evt);
+            }
+        });
+        jpImp.add(altaNuevaEqp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
+
+        guardarCambiosEqp1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Save as-35 (1).png"))); // NOI18N
+        guardarCambiosEqp1.setToolTipText("GURADAR CAMBIOS");
+        guardarCambiosEqp1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        guardarCambiosEqp1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarCambiosEqp1ActionPerformed(evt);
+            }
+        });
+        jpImp.add(guardarCambiosEqp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
+
+        borraRegistroeqp1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Trash Can-35.png"))); // NOI18N
+        borraRegistroeqp1.setToolTipText("BORRAR REGISTRO");
+        borraRegistroeqp1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        borraRegistroeqp1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borraRegistroeqp1ActionPerformed(evt);
+            }
+        });
+        jpImp.add(borraRegistroeqp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
+
+        limpiarFormularioEqp1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Eraser-35.png"))); // NOI18N
+        limpiarFormularioEqp1.setToolTipText("LIMPIAR FORMULARIO");
+        limpiarFormularioEqp1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        limpiarFormularioEqp1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiarFormularioEqp1ActionPerformed(evt);
+            }
+        });
+        jpImp.add(limpiarFormularioEqp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, -1, -1));
+
+        buscarEqp1.setForeground(new java.awt.Color(240, 240, 240));
+        buscarEqp1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Search-35.png"))); // NOI18N
+        buscarEqp1.setToolTipText("BUSCAR");
+        buscarEqp1.setBorderPainted(false);
+        buscarEqp1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscarEqp1.setOpaque(false);
+        jpImp.add(buscarEqp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, -1, -1));
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.white));
+
+        tEquipos1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.white));
+        tEquipos1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "EJ", "MARCA", "MODELO"
+            }
+        ));
+        tEquipos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tEquipos1MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tEquipos1);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+        );
+
+        jpImp.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 224, 652, 270));
+
+        jPestanas.addTab("IMPRESORAS", jpImp);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 672, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 505, Short.MAX_VALUE)
+        );
+
+        jPestanas.addTab("REPUESTOS", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -246,12 +560,8 @@ public class Vusuarios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jPestanas)
+                    .addComponent(jPanelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -260,37 +570,16 @@ public class Vusuarios extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanelImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPestanas)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tUsuariosMouseClicked
-        clave = String.valueOf(tMusuarios.getValueAt(tUsuarios.getSelectedRow(), 2));
-        jtNombre.setText(usuarioMap.get(clave).getNombre());
-        jtApellidos.setText(usuarioMap.get(clave).getApellidos());
-        jtCorreo.setText(usuarioMap.get(clave).getCorreo());
-        jtPlanta.setText(Integer.toString(usuarioMap.get(clave).getPlanta()));
-        jtTelefono.setText(Integer.toString(usuarioMap.get(clave).getTelefono()));
-        jtUserwin.setText(usuarioMap.get(clave).getUserwin());
-        jtXlnet.setText(usuarioMap.get(clave).getXlnet());
-    }//GEN-LAST:event_tUsuariosMouseClicked
-
     private void limpiarFormularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarFormularioActionPerformed
         limpiar();
     }//GEN-LAST:event_limpiarFormularioActionPerformed
-
-    private void borraRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borraRegistroActionPerformed
-        clave = jtUserwin.getText();
-        usuariosBBDD.borrarUsuarioBBDD(usuarioMap.get(clave));
-        usuarioMap.remove(clave);
-        usuarios.remove(usuarioMap.get(clave));
-        limpiar();
-    }//GEN-LAST:event_borraRegistroActionPerformed
 
     private void altaNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaNuevaActionPerformed
         //saco y formateo la fecha actual
@@ -316,6 +605,8 @@ public class Vusuarios extends javax.swing.JFrame {
         accesoUsuarioI = new AccesoUsuarios(jtUserwin.getText(), Integer.toString(hashCode), formato.format(fechaHoy));
         //enlazo usuario con acceso usuario
         usuario.setAccesoUsuario(accesoUsuarioI);
+        //enlazo acceso usuario con usuario
+        accesoUsuario.setUsuario(usuario);
         //inserto acceso usuario en tabla
         accessoUsuariosBBDD.altaAccessoUsuariosBBD(accesoUsuarioI);
 
@@ -324,7 +615,7 @@ public class Vusuarios extends javax.swing.JFrame {
         if (jtEjImp.getText().equals("") || jtEjpc.getText().equals("")) {
             /*
             aqui tengo que abrir una ventana que me permita dar de alta las dos
-            cosas o que me abra las ventanas correspondientes y asi asociarlas 
+            cosas o que me abra las ventanas correspondientes y asi asociarlas
             despues con el usuario.
              */
             System.out.println("he llegado aki");
@@ -342,6 +633,9 @@ public class Vusuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_altaNuevaActionPerformed
 
     private void guardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarCambiosActionPerformed
+        /*aqui contemplo que solo voy a modificar el usuario pero tengo que contemplar
+        la modificacion de impresora o pc.
+         */
         clave = String.valueOf(tMusuarios.getValueAt(tUsuarios.getSelectedRow(), 2));
         oldUsuario = usuarioMap.get(clave);
         usuario = new Usuarios(jtNombre.getText(), jtApellidos.getText(),
@@ -355,6 +649,65 @@ public class Vusuarios extends javax.swing.JFrame {
         }
         limpiar();
     }//GEN-LAST:event_guardarCambiosActionPerformed
+
+    private void borraRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borraRegistroActionPerformed
+        clave = jtUserwin.getText();
+        usuariosBBDD.borrarUsuarioBBDD(usuarioMap.get(clave));
+        usuarioMap.remove(clave);
+        usuarios.remove(usuarioMap.get(clave));
+        limpiar();
+    }//GEN-LAST:event_borraRegistroActionPerformed
+
+    private void tUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tUsuariosMouseClicked
+        clave = String.valueOf(tMusuarios.getValueAt(tUsuarios.getSelectedRow(), 2));
+        jtNombre.setText(usuarioMap.get(clave).getNombre());
+        jtApellidos.setText(usuarioMap.get(clave).getApellidos());
+        jtCorreo.setText(usuarioMap.get(clave).getCorreo());
+        jtPlanta.setText(Integer.toString(usuarioMap.get(clave).getPlanta()));
+        jtTelefono.setText(Integer.toString(usuarioMap.get(clave).getTelefono()));
+        jtUserwin.setText(usuarioMap.get(clave).getUserwin());
+        jtXlnet.setText(usuarioMap.get(clave).getXlnet());
+    }//GEN-LAST:event_tUsuariosMouseClicked
+
+    private void altaNuevaEqpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaNuevaEqpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_altaNuevaEqpActionPerformed
+
+    private void guardarCambiosEqpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarCambiosEqpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_guardarCambiosEqpActionPerformed
+
+    private void borraRegistroeqpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borraRegistroeqpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_borraRegistroeqpActionPerformed
+
+    private void limpiarFormularioEqpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarFormularioEqpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_limpiarFormularioEqpActionPerformed
+
+    private void tEquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tEquiposMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tEquiposMouseClicked
+
+    private void altaNuevaEqp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaNuevaEqp1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_altaNuevaEqp1ActionPerformed
+
+    private void guardarCambiosEqp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarCambiosEqp1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_guardarCambiosEqp1ActionPerformed
+
+    private void borraRegistroeqp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borraRegistroeqp1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_borraRegistroeqp1ActionPerformed
+
+    private void limpiarFormularioEqp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiarFormularioEqp1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_limpiarFormularioEqp1ActionPerformed
+
+    private void tEquipos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tEquipos1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tEquipos1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -430,12 +783,32 @@ public class Vusuarios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton altaNueva;
+    private javax.swing.JButton altaNuevaEqp;
+    private javax.swing.JButton altaNuevaEqp1;
     private javax.swing.JButton borraRegistro;
+    private javax.swing.JButton borraRegistroeqp;
+    private javax.swing.JButton borraRegistroeqp1;
     private javax.swing.JButton buscar;
+    private javax.swing.JButton buscarEqp;
+    private javax.swing.JButton buscarEqp1;
     private javax.swing.JButton guardarCambios;
+    private javax.swing.JButton guardarCambiosEqp;
+    private javax.swing.JButton guardarCambiosEqp1;
+    private javax.swing.JLabel jFotoImps;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -443,20 +816,46 @@ public class Vusuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanelImage;
+    private javax.swing.JTabbedPane jPestanas;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JCheckBox jcRentingEqp;
+    private javax.swing.JCheckBox jcRentingImps;
+    private javax.swing.JPanel jpEquipos;
+    private javax.swing.JPanel jpImp;
+    private javax.swing.JPanel jpUsuarios;
     private javax.swing.JTextField jtApellidos;
     private javax.swing.JTextField jtCorreo;
+    private javax.swing.JTextField jtEImpr;
+    private javax.swing.JTextField jtEjEqp;
     private javax.swing.JTextField jtEjImp;
     private javax.swing.JTextField jtEjpc;
+    private javax.swing.JTextField jtMarEqp;
+    private javax.swing.JTextField jtMarImps;
+    private javax.swing.JTextField jtModEqp;
+    private javax.swing.JTextField jtModImps;
     private javax.swing.JTextField jtNombre;
+    private javax.swing.JTextField jtObsEqp;
     private javax.swing.JTextField jtPlanta;
     private javax.swing.JTextField jtTelefono;
     private javax.swing.JTextField jtUserwin;
+    private javax.swing.JTextField jtUserwinEqp;
+    private javax.swing.JTextField jtUserwinImps;
     private javax.swing.JTextField jtXlnet;
     private javax.swing.JButton limpiarFormulario;
+    private javax.swing.JButton limpiarFormularioEqp;
+    private javax.swing.JButton limpiarFormularioEqp1;
+    private javax.swing.JTable tEquipos;
+    private javax.swing.JTable tEquipos1;
     private javax.swing.JTable tUsuarios;
     // End of variables declaration//GEN-END:variables
 }
