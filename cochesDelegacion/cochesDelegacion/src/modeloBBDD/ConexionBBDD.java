@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 public class ConexionBBDD {
    
-    private String database = "D:\\pogramacion\\Proyecto_Delgacion\\appDelegacion\\appDelegacion\\bbdd\\cochesDelegacion";
+    private String database = "\\appDelegacion\\cochesDelegacion\\BBDD\\cochesDelegacion";
     private String username="bcastrof";
     private String password="amets517";
     private String url = "jdbc:hsqldb:"+database;
