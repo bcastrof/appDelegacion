@@ -74,3 +74,11 @@ if(newrow.horaRecogida < entrega) then
 SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El coche esta ocupado a la hora que lo pretendes recoger, elige otra hora u otro coche.';
 end if;
 end;
+
+CREATE PROCEDURE recuperarUsuario
+(USW VARCHAR(15), PAS VARCHAR(25))
+READS SQL DATA DYNAMIC RESULT SETS 1
+BEGIN ATOMIC
+DECLARE res CURSOR FOR SELECT * FROM ACCESOUSER WHERE USERWIN=USW AND PASS=PAS;
+OPEN res;
+END;
