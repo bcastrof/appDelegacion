@@ -5,6 +5,7 @@
  */
 package ventanas;
 
+import javax.swing.JOptionPane;
 import modeloBBDD.AccesoUsuariosBBDD;
 import modeloVentanas.AccesoUsuarios;
 
@@ -13,8 +14,19 @@ import modeloVentanas.AccesoUsuarios;
  * @author bcastrof
  */
 public class vAccesoUsuarios extends javax.swing.JFrame {
-private modeloBBDD.AccesoUsuariosBBDD accesoUsuariosBBDD = new AccesoUsuariosBBDD();
-private modeloVentanas.AccesoUsuarios accesoUsuarios = new AccesoUsuarios();
+
+    private final modeloBBDD.AccesoUsuariosBBDD accesoUsuariosBBDD = new AccesoUsuariosBBDD();
+    private final modeloVentanas.AccesoUsuarios accesoUsuarios = new AccesoUsuarios();
+    public static modeloVentanas.AccesoUsuarios acc = new AccesoUsuarios();
+
+    public static AccesoUsuarios getAcc() {
+        return acc;
+    }
+
+    public static void setAcc(AccesoUsuarios acc) {
+        vAccesoUsuarios.acc = acc;
+    }
+
     public vAccesoUsuarios() {
         initComponents();
     }
@@ -33,12 +45,14 @@ private modeloVentanas.AccesoUsuarios accesoUsuarios = new AccesoUsuarios();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTusuario = new javax.swing.JTextField();
-        jTpass = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jTpass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("RESERVA COCHES");
+        setAlwaysOnTop(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -72,8 +86,6 @@ private modeloVentanas.AccesoUsuarios accesoUsuarios = new AccesoUsuarios();
 
         jTusuario.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
 
-        jTpass.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-
         jLabel4.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 255));
         jLabel4.setText("CAMBIAR CONTRASEÑA");
@@ -106,9 +118,8 @@ private modeloVentanas.AccesoUsuarios accesoUsuarios = new AccesoUsuarios();
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTusuario)
-                                        .addComponent(jTpass, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)))))
+                                    .addComponent(jTusuario)
+                                    .addComponent(jTpass))))
                         .addGap(160, 160, 160))))
         );
         layout.setVerticalGroup(
@@ -135,15 +146,26 @@ private modeloVentanas.AccesoUsuarios accesoUsuarios = new AccesoUsuarios();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      
-        accesoUsuarios = new AccesoUsuarios(jTusuario.getText(), jTpass.getText());
-        
-       if(accesoUsuariosBBDD.recuUsuarios(accesoUsuarios)==null){
-           System.out.println("caca");
-       } else{
-           System.out.println("todo ok");
-       }
+        login();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void login() {
+        //creamos un array con los caracteres de nuestro campo.
+        char[] passcadena = jTpass.getPassword();
+        //formamos una nueva cadena de texto con el array.
+        String pass = new String(passcadena);
+        // accesoUsuarios = new AccesoUsuarios(jTusuario.getText(), pass);
+        accesoUsuarios.setUserWin(jTusuario.getText());
+        accesoUsuarios.setPass(pass);
+        if (accesoUsuariosBBDD.recuUsuarios(accesoUsuarios) == null) {
+            JOptionPane.showMessageDialog(null, "Lo siento pero no hay nadie con esas creedenciales.\nContacte con el administrador.", "Error de Autentificación", JOptionPane.ERROR_MESSAGE);
+        } else {
+            acc = accesoUsuariosBBDD.recuUsuarios(accesoUsuarios);
+            vPanelCochesDelegacion vp = new vPanelCochesDelegacion();
+            vp.setVisible(true);
+            this.setVisible(false);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -187,7 +209,7 @@ private modeloVentanas.AccesoUsuarios accesoUsuarios = new AccesoUsuarios();
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTpass;
+    private javax.swing.JPasswordField jTpass;
     private javax.swing.JTextField jTusuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,26 +5,31 @@
  */
 package ventanas;
 
-
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import modeloBBDD.AccesoUsuariosBBDD;
+import modeloBBDD.UsuariosBBDD;
 import modeloVentanas.AccesoUsuarios;
 import modeloVentanas.Usuarios;
-
 /**
  *
  * @author bcastrof
  */
-public class vPanelCochesDelegacion extends javax.swing.JFrame {
+public final class vPanelCochesDelegacion extends javax.swing.JFrame {
 
     private Usuarios usuario;
     private AccesoUsuarios accesoUsuario;
-    
-    private List<Usuarios> usuarios = new ArrayList <>();
+    private final Mail mail = new Mail();
+    private final UsuariosBBDD usuariosBBDD = new UsuariosBBDD();
+    private final AccesoUsuariosBBDD accesoUsuariosBBDD = new AccesoUsuariosBBDD();
+    private List<Usuarios> usuarios = new ArrayList<>();
     private List<AccesoUsuarios> accesoUsuarios = new ArrayList<>();
-    
+
     public vPanelCochesDelegacion() {
         initComponents();
+        accesoUsuario = vAccesoUsuarios.getAcc();
+        login(accesoUsuario);
     }
 
     /**
@@ -57,10 +62,12 @@ public class vPanelCochesDelegacion extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jCheckAdmin = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.white));
@@ -172,6 +179,9 @@ public class vPanelCochesDelegacion extends javax.swing.JFrame {
                     .addContainerGap()))
         );
 
+        jCheckAdmin.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jCheckAdmin.setText("AMDIN");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -196,7 +206,7 @@ public class vPanelCochesDelegacion extends javax.swing.JFrame {
                             .addComponent(jTusuario, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                             .addComponent(jTcorreo)
                             .addComponent(jTnombre))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -208,6 +218,8 @@ public class vPanelCochesDelegacion extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(jTtelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jCheckAdmin)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,7 +252,8 @@ public class vPanelCochesDelegacion extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckAdmin))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -299,14 +312,37 @@ public class vPanelCochesDelegacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      usuario = new Usuarios(jTnombre.getText(), jTapellidos.getText(), jTcorreo.getText(), Integer.parseInt(jTtelefono.getText()));
-      usuarios.add(usuario);
-      String pass = usuario.password();
-      accesoUsuario = new AccesoUsuarios(jTusuario.getText(), pass);
-      accesoUsuarios.add(accesoUsuario);
-      accesoUsuario.setUsuario(usuario);
-      usuario.setAccesoUsuarios(accesoUsuario);
+        String opcion = "alta";
+        usuario = new Usuarios(jTnombre.getText(), jTapellidos.getText(), jTcorreo.getText(), Integer.parseInt(jTtelefono.getText()));
+        usuarios.add(usuario);
+        String pass = usuario.password();
+        String tipo;
+        if (jCheckAdmin.isSelected() == true) {
+            tipo = "admin";
+        } else {
+            tipo = "user";
+        }
+        accesoUsuario = new AccesoUsuarios(jTusuario.getText(), pass, tipo);
+        accesoUsuarios.add(accesoUsuario);
+        accesoUsuario.setUsuario(usuario);
+        usuario.setAccesoUsuarios(accesoUsuario);
+        if (usuariosBBDD.insertUsuarios(usuario) == true && accesoUsuariosBBDD.insertUsuarios(accesoUsuario)) {
+             mail.enviarMail(accesoUsuario.getUserWin(), accesoUsuario.getPass(), usuario.getCorreo(), opcion);
+              JOptionPane.showMessageDialog(null, "Alta Usuario realizada Correctamente", "Alta", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+             JOptionPane.showMessageDialog(null, "No se ha podido dar de alta al usuario.\n"
+                     + "Revise los datos\n"
+                     + "Si el problema persiste hable con el administrador.", "Alta", JOptionPane.ERROR_MESSAGE); 
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void login(AccesoUsuarios acc) {
+        if (acc.getTipo().equalsIgnoreCase("user")) {
+            jTabbedPane1.setEnabledAt(0, false);
+            jTabbedPane1.setEnabledAt(1, false);
+            jTabbedPane1.setSelectedIndex(2);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -348,6 +384,7 @@ public class vPanelCochesDelegacion extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JCheckBox jCheckAdmin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

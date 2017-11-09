@@ -13,12 +13,13 @@ public class AccesoUsuarios {
 
     private String userWin;
     private String pass;
-
+    private String tipo;
     private Usuarios usuario;
 
-    public AccesoUsuarios(String userWin, String pass) {
+    public AccesoUsuarios(String userWin, String pass, String tipo) {
         this.userWin = userWin;
         this.pass = pass;
+        this.tipo = tipo;
     }
 
     public AccesoUsuarios() {
@@ -46,5 +47,13 @@ public class AccesoUsuarios {
 
     public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

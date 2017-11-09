@@ -18,7 +18,7 @@ create table accesoUser
 (
 userwin varchar (15),
 pass varchar(25),
-
+tipo varchar(10),
 constraint ACC_USW_FK foreign key (userwin) references usuarios (userwin) on delete cascade,
 constraint ACC_USW_PK primary key (userwin)
 );
@@ -52,9 +52,9 @@ insert into usuarios values ('bcastrof','Bruno','Castro','bcastrof@loquesea.com'
 insert into usuarios values ('casinchu','Carmen','Chueca','casinchu@loquesea.com',17782);
 insert into usuarios values ('szugadib','Sabin','Barron','szugadib@loquesea.com',17782);
 
-insert into accesoUser values ('bcastrof','123456');
-insert into accesoUser values ('casinchu','123456');
-insert into accesoUser values ('szugadib','123456');
+insert into accesoUser values ('bcastrof','123456', 'admin');
+insert into accesoUser values ('casinchu','123456', 'user');
+insert into accesoUser values ('szugadib','123456', 'user');
 
 insert into coches values ('Ford', 'Fiesta', '9674-GZF');
 insert into coches values ('Opel', 'Moka', '5296-HZG');
@@ -63,22 +63,3 @@ insert into coches values ('Renault', 'Clio', '0746-CYS');
 insert into CONDUCEN values ('bcastrof','5296-HZG', '2017-10-31', '2017-10-31 08:00:00','2017-10-31 15:00:00','esto es una prueba' );
 insert into CONDUCEN values ('bcastrof','5296-HZG', '2017-10-31', '2017-10-31 14:00:00','2017-10-31 16:00:00','esto es una prueba' );
 insert into CONDUCEN values ('bcastrof','5296-HZG', '2017-10-31', '2017-11-01 14:59:00','2017-11-01 16:00:00','esto es una prueba' );
-
-CREATE TRIGGER controlHoras before
-insert ON conducen 
-REFERENCING NEW AS newrow for each row
-BEGIN Atomic
-declare entrega TIMESTAMP;
-set (entrega)= (select max(horaentrega) from conducen where matricula = newrow.matricula and FECHARECOGIDA = newrow.fecharecogida);
-if(newrow.horaRecogida < entrega) then
-SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El coche esta ocupado a la hora que lo pretendes recoger, elige otra hora u otro coche.';
-end if;
-end;
-
-CREATE PROCEDURE recuperarUsuario
-(USW VARCHAR(15), PAS VARCHAR(25))
-READS SQL DATA DYNAMIC RESULT SETS 1
-BEGIN ATOMIC
-DECLARE res CURSOR FOR SELECT * FROM ACCESOUSER WHERE USERWIN=USW AND PASS=PAS;
-OPEN res;
-END;
