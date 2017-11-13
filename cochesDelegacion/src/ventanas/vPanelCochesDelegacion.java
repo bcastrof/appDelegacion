@@ -327,7 +327,8 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
         accesoUsuario.setUsuario(usuario);
         usuario.setAccesoUsuarios(accesoUsuario);
         if (usuariosBBDD.insertUsuarios(usuario) == true && accesoUsuariosBBDD.insertUsuarios(accesoUsuario)) {
-             mail.enviarMail(accesoUsuario.getUserWin(), accesoUsuario.getPass(), usuario.getCorreo(), opcion);
+             //mail.enviarMail(accesoUsuario.getUserWin(), accesoUsuario.getPass(), usuario.getCorreo(), opcion);
+             mail.adjunto(usuario.getCorreo());
               JOptionPane.showMessageDialog(null, "Alta Usuario realizada Correctamente", "Alta", JOptionPane.INFORMATION_MESSAGE);
         }else{
              JOptionPane.showMessageDialog(null, "No se ha podido dar de alta al usuario.\n"

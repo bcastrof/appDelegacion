@@ -15,9 +15,10 @@ import javax.swing.JOptionPane;
 public class ConexionBBDD {
    
     private String database = "C:\\Users\\Bruno\\Documents\\gitHub\\appJava\\appDelegacion\\cochesDelegacion\\BBDD\\cochesDelegacion";
+    private String database2= "D:\\pogramacion\\Proyecto_Delgacion\\appDelegacion\\cochesDelegacion\\BBDD\\cochesDelegacion";
     private String username="bcastrof";
     private String password="amets517";
-    private String url = "jdbc:hsqldb:"+database;
+    private String url = "jdbc:hsqldb:"+database2;
 
     public Connection conexion;
     
