@@ -22,6 +22,13 @@ public class AccesoUsuarios {
         this.tipo = tipo;
     }
 
+    public AccesoUsuarios(String userWin, String tipo) {
+        this.userWin = userWin;
+        this.tipo = tipo;
+    }
+    
+    
+
     public AccesoUsuarios() {
     }
 

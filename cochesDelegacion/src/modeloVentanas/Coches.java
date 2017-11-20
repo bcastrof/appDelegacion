@@ -12,8 +12,21 @@ package modeloVentanas;
 public class Coches {
     private String marca;
     private String modelo;
-    private String Matricula;
+    private String matricula;
+    
+    private Conducen conduce;
 
+    public Coches(String marca, String modelo, String Matricula) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.matricula = Matricula;
+    }
+
+    public Coches() {
+    }
+
+  
+    
     public String getMarca() {
         return marca;
     }
@@ -31,11 +44,19 @@ public class Coches {
     }
 
     public String getMatricula() {
-        return Matricula;
+        return matricula;
     }
 
     public void setMatricula(String Matricula) {
-        this.Matricula = Matricula;
+        this.matricula = Matricula;
+    }
+
+    public Conducen getConduce() {
+        return conduce;
+    }
+
+    public void setConduce(Conducen conduce) {
+        this.conduce = conduce;
     }
     
     

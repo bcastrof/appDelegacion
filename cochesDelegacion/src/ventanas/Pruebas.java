@@ -8,12 +8,16 @@ package ventanas;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modeloBBDD.AccesoUsuariosBBDD;
+import modeloBBDD.ConducenBBDD;
 import modeloBBDD.ConexionBBDD;
 import modeloVentanas.AccesoUsuarios;
-
+import modeloVentanas.Conducen;
+import modeloVentanas.Usuarios;
 
 /**
  *
@@ -24,46 +28,40 @@ public class Pruebas {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args){
-        ConexionBBDD con = new ConexionBBDD();
-      //  String sql = "{call recuperar_Usuarios(?,?,?,?)}";
-        
-        try {
-            CallableStatement cs = con.getConnection().prepareCall("call recuperar_Usuario(?,?,?,?)");
-            cs.setString(1, "bcastrof");
-            cs.setString(2, "123456");
-            cs.execute();
-            String user = cs.getString(3);
-            String tipo = cs.getString(4);
-            cs.close();
-            con.desconexionBBDD();
-            
-         
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Pruebas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-       /* String sql = "{call recuperarUsuario(?,?)}";
+    public static void main(String[] args) throws SQLException {
+//        ConexionBBDD con = new ConexionBBDD();
 
-        try {
-            CallableStatement cs = con.getConnection().prepareCall(sql);
-            cs.setString(1, "bcastrof");
-            cs.setString(2, "123456");
-            cs.execute();
-            cs.getMoreResults();
+//        con.getConnection();
+//        con.desconexionBBDD();
+//        String sql = "{call cargaUsuario (?,?,?,?,?,?,?,?)}";
+//
+//        try {
+//            AccesoUsuarios ac;
+//            Usuarios us;
+//            CallableStatement cs = con.getConnection().prepareCall(sql);
+//            cs.setString(1, "bcastrof");
+//            cs.setString(2, "123");
+//            cs.execute();
+//
+//            ac = new AccesoUsuarios(cs.getString(3), cs.getString(4));
+//            us = new Usuarios(cs.getString(5), cs.getString(6), cs.getString(7), cs.getInt(8));
+//            ac.setUsuario(us);
+//            us.setAccesoUsuarios(ac);
+//
+//            cs.close();
+//            con.desconexionBBDD();
+//
+//            System.out.println(ac.getUserWin() + " " + us.getNombre());
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Pruebas.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
-            ResultSet rs = cs.getResultSet();
-            while (rs.next()) {
-                String user = rs.getString("userwin");
-                String tipo = rs.getString("tipo");
-                System.out.println(user+" "+tipo);
-            }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(AccesoUsuariosBBDD.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        */
+        ConducenBBDD conducenBBDD = new ConducenBBDD();
+        //co=conducenBBDD.listarReservas("2017-11-14");
+        List <Conducen> co=conducenBBDD.listarReservas("2017-11-14");
+        co.forEach((co1) -> {
+            System.out.println(co1.getCoches().getMarca()+" "+co1.getFechaRecogida());
+        });
     }
-    
 }

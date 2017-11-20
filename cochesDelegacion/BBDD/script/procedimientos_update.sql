@@ -19,12 +19,28 @@ END;
 
 CREATE PROCEDURE modificarUsuario
 (
-usw varchar(15),
-pss varchar(15)
+in usw varchar(15),
+in psso varchar(15),
+in pss varchar(15)
 )
 MODIFIES SQL DATA
 BEGIN ATOMIC
 UPDATE ACCESOUSER
 SET pass = pss
-WHERE userwin = usw;
+WHERE userwin = usw and pass=psso;
+END;
+
+--tabla coches
+
+CREATE PROCEDURE modificarCoche
+(
+in mar varchar(15),
+in mde varchar(15),
+in mat varchar(15) 
+)
+MODIFIES SQL DATA
+BEGIN ATOMIC 
+UPDATE COCHES
+SET marca= mar, modelo=mde, matricula=mat
+where matricula = mat;
 END;

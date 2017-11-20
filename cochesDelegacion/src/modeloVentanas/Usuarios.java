@@ -20,6 +20,8 @@ public class Usuarios {
 
     private AccesoUsuarios accesoUsuarios;
 
+    private Conducen conduce;
+
     public Usuarios(String nombre, String apellidos, String correo, int telefono) {
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -30,7 +32,6 @@ public class Usuarios {
     public Usuarios() {
     }
 
-    
     public String getNombre() {
         return nombre;
     }
@@ -69,6 +70,14 @@ public class Usuarios {
 
     public void setAccesoUsuarios(AccesoUsuarios accesoUsuarios) {
         this.accesoUsuarios = accesoUsuarios;
+    }
+
+    public Conducen getConduce() {
+        return conduce;
+    }
+
+    public void setConduce(Conducen conduce) {
+        this.conduce = conduce;
     }
 
     public String password() {

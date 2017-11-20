@@ -5,20 +5,43 @@
  */
 package modeloVentanas;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author bcastrof
  */
 public class Conducen {
 
+    private String usuario;
+    private String coche;
     private String fechaRecogida;
     private String horaRecogida;
     private String horaEntrega;
     private String motivo;
 
-    private Usuarios usuarios;
+    public Conducen() {
+    }
 
-    private Coches coches;
+    public Conducen(String usuario, String coche, String fechaRecogida, String horaRecogida, String horaEntrega, String motivo) {
+        this.usuario = usuario;
+        this.coche = coche;
+        this.fechaRecogida = fechaRecogida;
+        this.horaRecogida = horaRecogida;
+        this.horaEntrega = horaEntrega;
+        this.motivo = motivo;
+    }
+
+    public Conducen(String fechaRecogida, String horaRecogida, String horaEntrega, String motivo) {
+        this.fechaRecogida = fechaRecogida;
+        this.horaRecogida = horaRecogida;
+        this.horaEntrega = horaEntrega;
+        this.motivo = motivo;
+    }
+
+
+    
 
     public String getFechaRecogida() {
         return fechaRecogida;
@@ -52,22 +75,21 @@ public class Conducen {
         this.motivo = motivo;
     }
 
-    public Usuarios getUsuarios() {
-        return usuarios;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setUsuarios(Usuarios usuarios) {
-        this.usuarios = usuarios;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
-    public Coches getCoches() {
-        return coches;
+    public String getCoche() {
+        return coche;
     }
 
-    public void setCoches(Coches coches) {
-        this.coches = coches;
+    public void setCoche(String coche) {
+        this.coche = coche;
     }
-
     
-    
+
 }

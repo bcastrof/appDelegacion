@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modeloVentanas.AccesoUsuarios;
+import modeloVentanas.Usuarios;
 
 /**
  *
@@ -84,7 +85,56 @@ public class AccesoUsuariosBBDD {
             return acc;
         }
         return null;
-
     }
 
+    public boolean modificarPass(String usuario, String passo, String newPass) {
+
+        modeloBBDD.ConexionBBDD cn = new ConexionBBDD();
+        String sql = "{call modificarUsuario (?,?,?)}";
+
+        try {
+            CallableStatement cs = cn.getConnection().prepareCall(sql);
+            cs.setString(1, usuario);
+            cs.setString(2, passo);
+            cs.setString(3, newPass);
+            cs.execute();
+            cs.close();
+            cn.desconexionBBDD();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AccesoUsuariosBBDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
+
+    public AccesoUsuarios cargaCompleta(AccesoUsuarios ac) {
+        modeloBBDD.ConexionBBDD cn = new ConexionBBDD();
+
+        String sql = "{call cargaUsuario (?,?,?,?,?,?,?,?)}";
+        AccesoUsuarios acc = new AccesoUsuarios();
+        Usuarios us = new Usuarios();
+        try {
+
+            CallableStatement cs = cn.getConnection().prepareCall(sql);
+            cs.setString(1, ac.getUserWin());
+            cs.setString(2, ac.getPass());
+            cs.execute();
+
+            acc = new AccesoUsuarios(cs.getString(3), cs.getString(4));
+            us = new Usuarios(cs.getString(5), cs.getString(6), cs.getString(7), cs.getInt(8));
+            acc.setUsuario(us);
+            us.setAccesoUsuarios(acc);
+
+            cs.close();
+            cn.desconexionBBDD();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AccesoUsuariosBBDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (acc.getUserWin() == null) {
+            return null;
+        } else {
+            return acc;
+        }
+    }
 }

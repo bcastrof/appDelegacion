@@ -1,8 +1,18 @@
+drop trigger controlHoras;
+drop procedure recuperarFunci;
+drop procedure recuperarFuncionarios;
+drop procedure recuperarUsuario;
+drop procedure recuperar_Usuario;
+drop procedure insertarFuncionario;
+drop procedure insertUser;
+drop procedure moduficarFuncionario;
+drop procedure modificarUsuario;
+drop procedure borrarFuncionario;
+drop procedure borrarUsuario;
 drop table usuarios cascade;
 drop table accesoUser cascade;
 drop table coches cascade;
 drop table conducen cascade;
-drop trigger controlHoras;
 
 create table usuarios
 (
@@ -40,10 +50,11 @@ horaRecogida timestamp,
 horaEntrega timestamp,
 motivo varchar(100),
 
-constraint CND_USW_FK foreign key (userwin) references usuarios(userwin) on delete set null,
-constraint CND_MAT_FK foreign key (matricula) references coches(matricula) on delete set null,
-constraint CND_UMFHI_PK primary key (userwin, matricula, fechaRecogida, horaRecogida),
-constraint CND_FRmFE_CHK check (horaEntrega>horaRecogida)
+constraint CND_USW_FK foreign key (userwin) references usuarios(userwin) on delete cascade,
+constraint CND_MAT_FK foreign key (matricula) references coches(matricula) on delete cascade,
+constraint CND_UMFHI_PK primary key (userwin, matricula, fechaRecogida, horaRecogida) on delete cascade,
+constraint CND_FRmFE_CHK check (horaEntrega>horaRecogida),
+constraint CND_FER_CHK check (fechaRecogida >= TODAY);
 );
 
 --inserts de prueba
@@ -63,3 +74,14 @@ insert into coches values ('Renault', 'Clio', '0746-CYS');
 insert into CONDUCEN values ('bcastrof','5296-HZG', '2017-10-31', '2017-10-31 08:00:00','2017-10-31 15:00:00','esto es una prueba' );
 insert into CONDUCEN values ('bcastrof','5296-HZG', '2017-10-31', '2017-10-31 14:00:00','2017-10-31 16:00:00','esto es una prueba' );
 insert into CONDUCEN values ('bcastrof','5296-HZG', '2017-10-31', '2017-11-01 14:59:00','2017-11-01 16:00:00','esto es una prueba' );
+
+--vista carga usuarios
+drop view cargausuario;
+
+CREATE VIEW cargaUsuario
+as 
+(select a.USERWIN, a.PASS, a.TIPO, u.NOMBRE, u.APELLIDOS, u.CORREO, u.TELEFONO from accesouser a
+join Usuarios u
+on
+a.USERWIN=u.USERWIN);
+

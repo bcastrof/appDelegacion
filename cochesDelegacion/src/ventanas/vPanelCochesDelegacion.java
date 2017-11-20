@@ -5,31 +5,56 @@
  */
 package ventanas;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import modeloBBDD.AccesoUsuariosBBDD;
+import modeloBBDD.CochesBBDD;
+import modeloBBDD.ConducenBBDD;
 import modeloBBDD.UsuariosBBDD;
 import modeloVentanas.AccesoUsuarios;
+import modeloVentanas.Coches;
+import modeloVentanas.Conducen;
 import modeloVentanas.Usuarios;
+
 /**
  *
  * @author bcastrof
  */
 public final class vPanelCochesDelegacion extends javax.swing.JFrame {
 
+    private Conducen reserva;
+    private Coches coche;
     private Usuarios usuario;
     private AccesoUsuarios accesoUsuario;
     private final Mail mail = new Mail();
     private final UsuariosBBDD usuariosBBDD = new UsuariosBBDD();
     private final AccesoUsuariosBBDD accesoUsuariosBBDD = new AccesoUsuariosBBDD();
+    private final CochesBBDD cochesBBDD = new CochesBBDD();
     private List<Usuarios> usuarios = new ArrayList<>();
     private List<AccesoUsuarios> accesoUsuarios = new ArrayList<>();
+    private Object JSpinner3;
+    private SpinnerDateModel sm;
+    private SpinnerDateModel sm3;
+    private List<Coches> ch = cochesBBDD.listarCoches();
+    private final ConducenBBDD conducenBBDD = new ConducenBBDD();
+    private DefaultTableModel jModel;
 
     public vPanelCochesDelegacion() {
         initComponents();
         accesoUsuario = vAccesoUsuarios.getAcc();
         login(accesoUsuario);
+        llenarCB();
     }
 
     /**
@@ -55,16 +80,44 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
         jTtelefono = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTusuario = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        altaUsuarios = new javax.swing.JButton();
+        modificarUsuarios = new javax.swing.JButton();
+        borrarUsuarios = new javax.swing.JButton();
+        buscarUsuarios = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTusuarios = new javax.swing.JTable();
         jCheckAdmin = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jTmarca = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jTmodelo = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTmatricula = new javax.swing.JTextField();
+        altaCoches = new javax.swing.JButton();
+        modificarCoches = new javax.swing.JButton();
+        borrarCoches = new javax.swing.JButton();
+        buscarCoches = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTcoches = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        java.util.Date date = new java.util.Date();
+        sm =
+        new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
+        jsinicio = new javax.swing.JSpinner(sm);
+        java.util.Date date3 = new java.util.Date();
+        sm3 =
+        new SpinnerDateModel(date3, null, null, Calendar.HOUR_OF_DAY);
+        jsfin = new javax.swing.JSpinner(sm3);
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -111,36 +164,32 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         jLabel6.setText("USUARIO:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Save-35 (1).png"))); // NOI18N
-        jButton1.setToolTipText("ALTA");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.white));
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        altaUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Save-35 (1).png"))); // NOI18N
+        altaUsuarios.setToolTipText("ALTA");
+        altaUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        altaUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                altaUsuariosActionPerformed(evt);
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Save as-35 (1).png"))); // NOI18N
-        jButton2.setToolTipText("MODIFICAR");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.white));
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        modificarUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Save as-35 (1).png"))); // NOI18N
+        modificarUsuarios.setToolTipText("MODIFICAR");
+        modificarUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Trash Can-35.png"))); // NOI18N
-        jButton3.setToolTipText("BORRAR");
-        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.white));
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        borrarUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Trash Can-35.png"))); // NOI18N
+        borrarUsuarios.setToolTipText("BORRAR");
+        borrarUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Search-35.png"))); // NOI18N
-        jButton4.setToolTipText("BUSCAR");
-        jButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.white));
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscarUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Search-35.png"))); // NOI18N
+        buscarUsuarios.setToolTipText("BUSCAR");
+        buscarUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.white));
 
-        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.white));
-        jTable1.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTusuarios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.white));
+        jTusuarios.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jTusuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -149,29 +198,29 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTusuarios);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 526, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                    .addContainerGap(37, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(37, Short.MAX_VALUE)))
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
+            .addGap(0, 449, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -220,13 +269,13 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jCheckAdmin)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(altaUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(modificarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(borrarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(buscarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -249,10 +298,10 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(altaUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modificarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(borrarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckAdmin))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -261,28 +310,238 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("USUARIOS", jPanel2);
 
+        jLabel7.setText("MARCA:");
+
+        jLabel8.setText("MODELO:");
+
+        jLabel9.setText("MATRICULA:");
+
+        altaCoches.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Save-35 (1).png"))); // NOI18N
+        altaCoches.setToolTipText("ALTA");
+        altaCoches.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        altaCoches.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                altaCochesActionPerformed(evt);
+            }
+        });
+
+        modificarCoches.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Save as-35 (1).png"))); // NOI18N
+        modificarCoches.setToolTipText("MODIFICAR");
+        modificarCoches.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        modificarCoches.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarCochesActionPerformed(evt);
+            }
+        });
+
+        borrarCoches.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Trash Can-35.png"))); // NOI18N
+        borrarCoches.setToolTipText("BORRAR");
+        borrarCoches.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        borrarCoches.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrarCochesActionPerformed(evt);
+            }
+        });
+
+        buscarCoches.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8-Search-35.png"))); // NOI18N
+        buscarCoches.setToolTipText("BUSCAR");
+        buscarCoches.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.white));
+
+        jTcoches.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.white, java.awt.Color.lightGray, java.awt.Color.white));
+        jTcoches.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jTcoches.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "MARCA", "MODELO", "MATRICULA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTcoches);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 526, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 449, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addGap(38, 38, 38))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(22, 22, 22)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTmatricula)
+                            .addComponent(jTmodelo, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(jTmarca))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(altaCoches, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(modificarCoches, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(borrarCoches, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscarCoches, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(altaCoches, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(modificarCoches, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(borrarCoches, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buscarCoches, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jTmarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jTmodelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jTmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(33, 33, 33))
         );
 
         jTabbedPane1.addTab("COCHES", jPanel3);
+
+        jDateChooser1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jDateChooser1MouseClicked(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        JSpinner.DateEditor de = new JSpinner.DateEditor(jsinicio, "HH:mm");
+        jsinicio.setEditor(de);
+
+        JSpinner.DateEditor de3 = new JSpinner.DateEditor(jsfin, "HH:mm");
+        jsfin.setEditor(de3);
+
+        jButton1.setText("AÑADIR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTable1.setFont(new java.awt.Font("Arial", 1, 8)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "lo coge", "que coche", "fecha", "hora salida", "hora llegada", "motivo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(178, 178, 178)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jsinicio)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jsfin)
+                    .addComponent(jTextField1)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jsinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jsfin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("RESERVAS", jPanel4);
@@ -311,8 +570,8 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String opcion = "alta";
+    private void altaUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaUsuariosActionPerformed
+
         usuario = new Usuarios(jTnombre.getText(), jTapellidos.getText(), jTcorreo.getText(), Integer.parseInt(jTtelefono.getText()));
         usuarios.add(usuario);
         String pass = usuario.password();
@@ -322,20 +581,80 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
         } else {
             tipo = "user";
         }
-        accesoUsuario = new AccesoUsuarios(jTusuario.getText(), pass, tipo);
+        accesoUsuario = new AccesoUsuarios(jTusuario.getText().toLowerCase(), pass, tipo);
         accesoUsuarios.add(accesoUsuario);
         accesoUsuario.setUsuario(usuario);
         usuario.setAccesoUsuarios(accesoUsuario);
-        if (usuariosBBDD.insertUsuarios(usuario) == true && accesoUsuariosBBDD.insertUsuarios(accesoUsuario)) {
-             //mail.enviarMail(accesoUsuario.getUserWin(), accesoUsuario.getPass(), usuario.getCorreo(), opcion);
-             mail.adjunto(usuario.getCorreo());
-              JOptionPane.showMessageDialog(null, "Alta Usuario realizada Correctamente", "Alta", JOptionPane.INFORMATION_MESSAGE);
-        }else{
-             JOptionPane.showMessageDialog(null, "No se ha podido dar de alta al usuario.\n"
-                     + "Revise los datos\n"
-                     + "Si el problema persiste hable con el administrador.", "Alta", JOptionPane.ERROR_MESSAGE); 
+        if (usuariosBBDD.insertUsuarios(usuario) == true && accesoUsuariosBBDD.insertUsuarios(accesoUsuario) == true) {
+            //mail.enviarMail(accesoUsuario.getUserWin(), accesoUsuario.getPass(), usuario.getCorreo(), opcion);
+            JOptionPane.showMessageDialog(null, "Alta Usuario realizada Correctamente", "Alta", JOptionPane.INFORMATION_MESSAGE);
+            limpiarUsuarios();
+            if (mail.adjunto(usuario.getCorreo(), usuario.getAccesoUsuarios().getUserWin(), usuario.getAccesoUsuarios().getPass()) == true) {
+                JOptionPane.showMessageDialog(null, "Correo enviado correctamente", "Alta", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Correo no enviado", "Alta", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha podido dar de alta al usuario.\n"
+                    + "Revise los datos\n"
+                    + "Si el problema persiste hable con el administrador.", "Alta", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_altaUsuariosActionPerformed
+
+    private void altaCochesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaCochesActionPerformed
+        coche = new Coches(jTmarca.getText(), jTmodelo.getText(), jTmatricula.getText().toLowerCase());
+        if (cochesBBDD.insertCoche(coche) == true) {
+            JOptionPane.showMessageDialog(null, "Coche dado de alta correctamente", "Alta", JOptionPane.INFORMATION_MESSAGE);
+            limpiarCoches();
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha podido dar de alta el coche", "Alta", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_altaCochesActionPerformed
+
+    private void modificarCochesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarCochesActionPerformed
+        coche = new Coches(jTmarca.getText(), jTmodelo.getText(), jTmatricula.getText().toLowerCase());
+        if (cochesBBDD.updateCoche(coche) == true) {
+            JOptionPane.showMessageDialog(null, "Coche modificado correctamente", "Update", JOptionPane.INFORMATION_MESSAGE);
+            limpiarCoches();
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha podido modificar el coche", "Update", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_modificarCochesActionPerformed
+
+    private void borrarCochesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarCochesActionPerformed
+        if (cochesBBDD.deleteCoche(jTmatricula.getText()) == true) {
+            JOptionPane.showMessageDialog(null, "Coche dado de baja correctamente", "Baja", JOptionPane.INFORMATION_MESSAGE);
+            limpiarCoches();
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha podido eliminar el coche", "Baja", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_borrarCochesActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        DateFormat horaFormat = new SimpleDateFormat("HH:mm");
+
+        int index = jComboBox1.getSelectedIndex();
+        coche = ch.get(index);
+        String fecha = dateFormat.format(jDateChooser1.getDate());
+        String horaRecogida = dateFormat.format(jDateChooser1.getDate()).concat(" ").concat(horaFormat.format(sm.getDate()).concat(":00"));
+        String horaEntrega = dateFormat.format(jDateChooser1.getDate()).concat(" ").concat(horaFormat.format(sm3.getDate()).concat(":00"));
+        String motivo = jTextField1.getText();
+        reserva = new Conducen(fecha, horaRecogida, horaEntrega, motivo);
+        //          System.out.println(accesoUsuario.getUserWin()+" "+coche.getMatricula()+" "+fecha + " " + horaRecogida + " " + horaEntrega+" "+motivo);
+        if (conducenBBDD.insertarReserva(accesoUsuario, coche, reserva) == true) {
+            System.out.println(accesoUsuario.getUserWin() + " " + coche.getMatricula() + " " + fecha + " " + horaRecogida + " " + horaEntrega + " " + motivo);
+            limpiarReservas();
+        } else {
+            System.out.println("caca");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jDateChooser1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateChooser1MouseClicked
+       añadirEsccuhaDataChoser();
+    }//GEN-LAST:event_jDateChooser1MouseClicked
 
     public void login(AccesoUsuarios acc) {
         if (acc.getTipo().equalsIgnoreCase("user")) {
@@ -343,6 +662,99 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
             jTabbedPane1.setEnabledAt(1, false);
             jTabbedPane1.setSelectedIndex(2);
         }
+    }
+
+    public void limpiarUsuarios() {
+        String t = " ";
+        jTusuario.setText(t);
+        jTnombre.setText(t);
+        jTapellidos.setText(t);
+        jTcorreo.setText(t);
+        jTtelefono.setText(t);
+        jCheckAdmin.setSelected(false);
+
+    }
+
+    public void limpiarCoches() {
+        String t = "";
+
+        jTmarca.setText(t);
+        jTmodelo.setText(t);
+        jTmatricula.setText(t);
+    }
+
+    public void limpiarReservas() {
+        jComboBox1.setSelectedIndex(0);
+        jDateChooser1.setDate(null);
+        jTextField1.setText("");
+    }
+
+    public void llenarCB() {
+
+        ch = cochesBBDD.listarCoches();
+        //ch = cochesBBDD.listarCoches();
+
+        jComboBox1.removeAllItems();
+
+        for (int i = 0; i < ch.size(); i++) {
+            jComboBox1.addItem(ch.get(i).getMarca().concat(" ").concat(ch.get(i).getModelo().concat(" ").concat(ch.get(i).getMatricula())));
+        }
+    }
+
+    public void añadirEsccuhaDataChoser() {
+        jDateChooser1.getDateEditor().addPropertyChangeListener(
+                new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {
+                if ("date".equals(e.getPropertyName())) {
+                    listarviajes1();
+                }
+            }
+        });
+        this.add(jDateChooser1);
+    }
+
+
+    public void listarviajes1() {
+        jModel = (DefaultTableModel) jTable1.getModel();
+        DefaultTableCellRenderer Alinear = new DefaultTableCellRenderer();
+        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+        List<Conducen> co = conducenBBDD.listarReservas1();
+        if (jTable1.getRowCount() == 0) {
+
+            int i = 0;
+            do {
+                if (co.get(i).getFechaRecogida().equals(fecha())) {
+                    jModel.insertRow(jModel.getRowCount(), new Object[]{
+                        co.get(i).getUsuario(), co.get(i).getCoche(), co.get(i).getFechaRecogida(), co.get(i).getHoraRecogida().substring(11, 16), co.get(i).getHoraEntrega().substring(11, 16), co.get(i).getMotivo()
+                    });
+                }
+                i++;
+            } while (i < co.size());
+
+        } else {
+            jModel.setRowCount(0);
+            int i = 0;
+            do {
+                if (co.get(i).getFechaRecogida().equals(fecha())) {
+                    jModel.insertRow(jModel.getRowCount(), new Object[]{
+                        co.get(i).getUsuario(), co.get(i).getCoche(), co.get(i).getFechaRecogida(), co.get(i).getHoraRecogida().substring(11, 16), co.get(i).getHoraEntrega().substring(11, 16), co.get(i).getMotivo()
+                    });
+                }
+                i++;
+            } while (i < co.size());
+        }
+        for (int j = 0; j < 6; j++) {
+
+            jTable1.getColumnModel().getColumn(j).setCellRenderer(Alinear);
+        }
+
+    }
+
+    public String fecha() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date = dateFormat.format(jDateChooser1.getDate());
+        return date;
     }
 
     /**
@@ -381,29 +793,51 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton altaCoches;
+    private javax.swing.JButton altaUsuarios;
+    private javax.swing.JButton borrarCoches;
+    private javax.swing.JButton borrarUsuarios;
+    private javax.swing.JButton buscarCoches;
+    private javax.swing.JButton buscarUsuarios;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckAdmin;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTapellidos;
+    private javax.swing.JTable jTcoches;
     private javax.swing.JTextField jTcorreo;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTmarca;
+    private javax.swing.JTextField jTmatricula;
+    private javax.swing.JTextField jTmodelo;
     private javax.swing.JTextField jTnombre;
     private javax.swing.JTextField jTtelefono;
     private javax.swing.JTextField jTusuario;
+    private javax.swing.JTable jTusuarios;
+    private javax.swing.JSpinner jsfin;
+    private javax.swing.JSpinner jsinicio;
+    private javax.swing.JButton modificarCoches;
+    private javax.swing.JButton modificarUsuarios;
     // End of variables declaration//GEN-END:variables
 }

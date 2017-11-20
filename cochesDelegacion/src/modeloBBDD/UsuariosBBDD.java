@@ -38,4 +38,25 @@ public class UsuariosBBDD {
         return false;
     } 
     
+    public modeloVentanas.Usuarios recuperarUsuarios (String usuario){
+        modeloBBDD.ConexionBBDD cn = new ConexionBBDD();
+        String sql = "{call recuperarFunci(?,?,?,?,?)}";
+         modeloVentanas.Usuarios us = new modeloVentanas.Usuarios();
+        try {
+            CallableStatement cs = cn.getConnection().prepareCall(sql);
+            cs.setString(1, usuario);
+            cs.execute(); 
+            us = new modeloVentanas.Usuarios(cs.getString(2), cs.getString(3), cs.getString(4), cs.getInt(5));
+            cs.close();
+            cn.desconexionBBDD();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuariosBBDD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(us.getNombre()==null){
+            return null;
+        }else{
+            return  us;
+        }
+    }
+    
 }
