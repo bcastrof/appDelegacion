@@ -32,6 +32,10 @@ public class Usuarios {
     public Usuarios() {
     }
 
+    public Usuarios(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -92,5 +96,4 @@ public class Usuarios {
         }
         return pass.toString();
     }
-
 }

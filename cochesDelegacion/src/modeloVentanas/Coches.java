@@ -5,16 +5,23 @@
  */
 package modeloVentanas;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author bcastrof
  */
 public class Coches {
-    private String marca;
+   private String marca;
     private String modelo;
     private String matricula;
-    
-    private Conducen conduce;
+
+//    private Conducen conducen;
+    private List<Conducen> conducen = new ArrayList<>();
+
+    public Coches() {
+    }
 
     public Coches(String marca, String modelo, String Matricula) {
         this.marca = marca;
@@ -22,11 +29,10 @@ public class Coches {
         this.matricula = Matricula;
     }
 
-    public Coches() {
+    public Coches(String marca) {
+        this.marca = marca;
     }
 
-  
-    
     public String getMarca() {
         return marca;
     }
@@ -51,13 +57,15 @@ public class Coches {
         this.matricula = Matricula;
     }
 
-    public Conducen getConduce() {
-        return conduce;
-    }
-
-    public void setConduce(Conducen conduce) {
-        this.conduce = conduce;
-    }
+//    public Conducen getConducen() {
+//        return conducen;
+//    }
+//
+//    public void setConducen(Conducen conducen) {
+//        this.conducen = conducen;
+//    }
     
-    
+    public void añadirConducen(Conducen c){
+        conducen.add(c);
+    }
 }

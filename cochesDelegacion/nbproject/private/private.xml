@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/N:/RESERVA_VEHÍCULOS/año_2017/cochesDelegacion/src/ventanas/vPanelCochesDelegacion.java</file>
-            <file>file:/N:/RESERVA_VEHÍCULOS/año_2017/cochesDelegacion/src/modeloBBDD/ConducenBBDD.java</file>
-            <file>file:/N:/RESERVA_VEHÍCULOS/año_2017/cochesDelegacion/src/ventanas/Pruebas.java</file>
-            <file>file:/N:/RESERVA_VEHÍCULOS/año_2017/cochesDelegacion/src/modeloVentanas/Conducen.java</file>
-            <file>file:/N:/RESERVA_VEHÍCULOS/año_2017/cochesDelegacion/src/modeloVentanas/Usuarios.java</file>
-            <file>file:/N:/RESERVA_VEHÍCULOS/año_2017/cochesDelegacion/src/ventanas/vPruebas.java</file>
+            <file>file:/C:/Users/Bruno/Documents/github/appDelegacion/cochesDelegacion/src/modeloBBDD/ConducenBBDD.java</file>
+            <file>file:/C:/Users/Bruno/Documents/github/appDelegacion/cochesDelegacion/src/ventanas/vPanelCochesDelegacion.java</file>
+            <file>file:/C:/Users/Bruno/Documents/github/appDelegacion/cochesDelegacion/src/modeloVentanas/Usuarios.java</file>
+            <file>file:/C:/Users/Bruno/Documents/github/appDelegacion/cochesDelegacion/src/modeloBBDD/ConexionBBDD.java</file>
         </group>
     </open-files>
 </project-private>

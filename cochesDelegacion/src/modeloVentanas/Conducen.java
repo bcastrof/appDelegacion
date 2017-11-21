@@ -14,23 +14,17 @@ import java.util.List;
  */
 public class Conducen {
 
-    private String usuario;
-    private String coche;
-    private String fechaRecogida;
+       private String fechaRecogida;
     private String horaRecogida;
     private String horaEntrega;
     private String motivo;
 
-    public Conducen() {
-    }
+//    private List<AccesoUsuarios> accesoUsuarioses = new ArrayList<>();
+//    private List<Coches> cocheses = new ArrayList<>();
+    private AccesoUsuarios accesoUsuarios;
+    private Coches coches;
 
-    public Conducen(String usuario, String coche, String fechaRecogida, String horaRecogida, String horaEntrega, String motivo) {
-        this.usuario = usuario;
-        this.coche = coche;
-        this.fechaRecogida = fechaRecogida;
-        this.horaRecogida = horaRecogida;
-        this.horaEntrega = horaEntrega;
-        this.motivo = motivo;
+    public Conducen() {
     }
 
     public Conducen(String fechaRecogida, String horaRecogida, String horaEntrega, String motivo) {
@@ -40,8 +34,11 @@ public class Conducen {
         this.motivo = motivo;
     }
 
-
-    
+    public Conducen(String fechaRecogida, String horaRecogida, String horaEntrega) {
+        this.fechaRecogida = fechaRecogida;
+        this.horaRecogida = horaRecogida;
+        this.horaEntrega = horaEntrega;
+    }
 
     public String getFechaRecogida() {
         return fechaRecogida;
@@ -75,21 +72,26 @@ public class Conducen {
         this.motivo = motivo;
     }
 
-    public String getUsuario() {
-        return usuario;
+//    public void añadirAccesoUsuario(AccesoUsuarios a){
+//        accesoUsuarioses.add(a);
+//    }
+//    
+//    public void añadirCoches(Coches c){
+//        cocheses.add(c);
+//    }ç
+    public AccesoUsuarios getAccesoUsuarios() {
+        return accesoUsuarios;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setAccesoUsuarios(AccesoUsuarios accesoUsuarios) {
+        this.accesoUsuarios = accesoUsuarios;
     }
 
-    public String getCoche() {
-        return coche;
+    public Coches getCoches() {
+        return coches;
     }
 
-    public void setCoche(String coche) {
-        this.coche = coche;
+    public void setCoches(Coches coches) {
+        this.coches = coches;
     }
-    
-
 }

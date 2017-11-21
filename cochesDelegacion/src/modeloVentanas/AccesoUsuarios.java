@@ -5,16 +5,26 @@
  */
 package modeloVentanas;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author bcastrof
  */
 public class AccesoUsuarios {
 
+  
     private String userWin;
     private String pass;
     private String tipo;
     private Usuarios usuario;
+//    private Conducen conducen;
+    private List<Conducen> conducen = new ArrayList<>();
+
+    public AccesoUsuarios(String userWin) {
+        this.userWin = userWin;
+    }
 
     public AccesoUsuarios(String userWin, String pass, String tipo) {
         this.userWin = userWin;
@@ -26,8 +36,6 @@ public class AccesoUsuarios {
         this.userWin = userWin;
         this.tipo = tipo;
     }
-    
-    
 
     public AccesoUsuarios() {
     }
@@ -62,5 +70,16 @@ public class AccesoUsuarios {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+//    public Conducen getConducen() {
+//        return conducen;
+//    }
+//
+//    public void setConducen(Conducen conducen) {
+//        this.conducen = conducen;
+//    }
+    public void añadirConducen(Conducen c) {
+        conducen.add(c);
     }
 }

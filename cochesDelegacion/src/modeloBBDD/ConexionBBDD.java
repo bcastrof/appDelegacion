@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
 
 public class ConexionBBDD {
    
-    private String database = "C:\\Users\\Bruno\\Documents\\gitHub\\appJava\\appDelegacion\\cochesDelegacion\\BBDD\\cochesDelegacion";
+    private String database = "C:\\Users\\Bruno\\Documents\\github\\appDelegacion\\cochesDelegacion\\BBDD\\cochesDelegacion";
     private String database2= "D:\\pogramacion\\Proyecto_Delgacion\\appDelegacion\\cochesDelegacion\\BBDD\\cochesDelegacion";
     private String database3 = "N:\\RESERVA_VEHÍCULOS\\año_2017\\cochesDelegacion\\BBDD\\cochesDelegacion";
     private String username="bcastrof";
     private String password="amets517";
-    private String url = "jdbc:hsqldb:"+database3;
+    private String url = "jdbc:hsqldb:"+database;
 
     public Connection conexion;
     
