@@ -64,4 +64,5 @@ public class Pruebas {
             System.out.println(co1.getCoches().getMarca()+" "+co1.getFechaRecogida());
         });
     }
+    lol
 }
