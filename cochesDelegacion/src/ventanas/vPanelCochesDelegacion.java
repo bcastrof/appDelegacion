@@ -508,13 +508,13 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
 
-            jTable1.setFont(new java.awt.Font("Arial", 1, 8)); // NOI18N
+            jTable1.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
             jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
 
                 },
                 new String [] {
-                    "lo coge", "que coche", "fecha", "hora salida", "hora llegada", "motivo"
+                    "USUARIO", "COCHE", "FECHA", "HORA SALIDA", "HORA LLEGADA", "MOTIVO"
                 }
             ) {
                 boolean[] canEdit = new boolean [] {
