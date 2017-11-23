@@ -6,12 +6,16 @@
 package ventanas;
 
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.print.attribute.Size2DSyntax;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
@@ -36,25 +40,25 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
     private Conducen reserva;
     private Coches coche;
     private Usuarios usuario;
-    private AccesoUsuarios accesoUsuario;
+    private AccesoUsuarios accesoUser;
     private final Mail mail = new Mail();
     private final UsuariosBBDD usuariosBBDD = new UsuariosBBDD();
     private final AccesoUsuariosBBDD accesoUsuariosBBDD = new AccesoUsuariosBBDD();
     private final CochesBBDD cochesBBDD = new CochesBBDD();
-    private List<Usuarios> usuarios = new ArrayList<>();
-    private List<AccesoUsuarios> accesoUsuarios = new ArrayList<>();
-    private Object JSpinner3;
-    private SpinnerDateModel sm;
-    private SpinnerDateModel sm3;
-    private List<Coches> ch = cochesBBDD.listarCoches();
+    private final List<Coches> ch = cochesBBDD.listarCoches();
+    private final List<Usuarios> usuarios = new ArrayList<>();
+    private final List<AccesoUsuarios> accesoUsuar = new ArrayList<>();
     private final ConducenBBDD conducenBBDD = new ConducenBBDD();
+    private  List<Conducen> conducen2 = conducenBBDD.listarReservas2();
+    private final List<Conducen> conducen3 = new ArrayList<>();
     private DefaultTableModel jModel;
 
     public vPanelCochesDelegacion() {
         initComponents();
-        accesoUsuario = vAccesoUsuarios.getAcc();
-        login(accesoUsuario);
-        llenarCB();
+        login(vAccesoUsuarios.getAcc());
+        // this is a big chapuza, but working.
+        Date fea = new Date();
+        jDateChooser1.setDate(fea);
     }
 
     /**
@@ -105,17 +109,23 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        java.util.Date date = new java.util.Date();
-        sm =
-        new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
-        jsinicio = new javax.swing.JSpinner(sm);
-        java.util.Date date3 = new java.util.Date();
-        sm3 =
-        new SpinnerDateModel(date3, null, null, Calendar.HOUR_OF_DAY);
-        jsfin = new javax.swing.JSpinner(sm3);
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 7);
+        cal.set(Calendar.MINUTE, 45);
+        Date date = cal.getTime();
+        jsinicio = new javax.swing.JSpinner();
+        Calendar cal2 = Calendar.getInstance();
+        cal2.set(Calendar.HOUR_OF_DAY, 20);
+        cal2.set(Calendar.MINUTE, 00);
+        Date date2 = cal2.getTime();
+        jsfin = new javax.swing.JSpinner();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -451,13 +461,23 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("COCHES", jPanel3);
 
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.removeAllItems();
+        for (int i = 0; i < ch.size(); i++) {
+            jComboBox1.addItem(ch.get(i).getMarca().concat(" ").concat(ch.get(i).getModelo().concat(" ").concat(ch.get(i).getMatricula())));
+        }
+        jPanel7.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
 
-        JSpinner.DateEditor de = new JSpinner.DateEditor(jsinicio, "HH:mm");
-        jsinicio.setEditor(de);
+        jsinicio.setModel(new SpinnerDateModel(date, null, null, Calendar.HOUR));
+        jsinicio.setEditor(new JSpinner.DateEditor(jsinicio, "HH:mm"));
+        jPanel7.add(jsinicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 87, 95, -1));
 
-        JSpinner.DateEditor de3 = new JSpinner.DateEditor(jsfin, "HH:mm");
-        jsfin.setEditor(de3);
+        jsfin.setModel(new SpinnerDateModel(date2, null, null, Calendar.HOUR));
+        jsfin.setEditor(new JSpinner.DateEditor(jsfin, "HH:mm"));
+        jPanel7.add(jsfin, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 125, 95, -1));
+        jPanel7.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 163, 95, -1));
 
         jButton1.setText("AÑADIR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -465,48 +485,29 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel7.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 201, 95, -1));
 
         jDateChooser1.getDateEditor().addPropertyChangeListener(
             (PropertyChangeEvent e) -> {
                 if ("date".equals(e.getPropertyName())) {
-                    listarviajes1();
+                    listarviajes2();
                 }
             });
             this.add(jDateChooser1);
+            jPanel7.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 11, -1, -1));
 
-            javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-            jPanel7.setLayout(jPanel7Layout);
-            jPanel7Layout.setHorizontalGroup(
-                jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addGap(178, 178, 178)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jsinicio)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jsfin)
-                            .addComponent(jTextField1)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(257, Short.MAX_VALUE))
-            );
-            jPanel7Layout.setVerticalGroup(
-                jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jsinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jsfin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jButton1)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            );
+            jLabel10.setText("HORA SALIDA:");
+            jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 90, -1, -1));
+
+            jLabel11.setText("HORA LLEGADA:");
+            jPanel7.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 128, -1, -1));
+
+            jLabel12.setText("MOTIVO:");
+            jPanel7.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 166, -1, -1));
+
+            jButton2.setVisible(false);
+            jButton2.setText("jButton2");
+            jPanel7.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 201, -1, -1));
 
             jTable1.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
             jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -514,15 +515,21 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
 
                 },
                 new String [] {
-                    "USUARIO", "COCHE", "FECHA", "HORA SALIDA", "HORA LLEGADA", "MOTIVO"
+                    "USUARIO", "COCHE", "SALIDA", "LLEGADA", "MOTIVO"
                 }
             ) {
                 boolean[] canEdit = new boolean [] {
-                    false, false, false, false, false, false
+                    false, false, false, true, false
                 };
 
                 public boolean isCellEditable(int rowIndex, int columnIndex) {
                     return canEdit [columnIndex];
+                }
+            });
+            int index = jTable1.getSelectedRow();
+            jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    jTable1MouseClicked(evt);
                 }
             });
             jScrollPane3.setViewportView(jTable1);
@@ -532,13 +539,10 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
             jPanel4Layout.setHorizontalGroup(
                 jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addContainerGap()
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addGap(20, 20, 20)
-                            .addComponent(jScrollPane3)))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addContainerGap())
             );
             jPanel4Layout.setVerticalGroup(
@@ -547,7 +551,7 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
                     .addContainerGap()
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
                     .addContainerGap())
             );
 
@@ -588,11 +592,11 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
         } else {
             tipo = "user";
         }
-        accesoUsuario = new AccesoUsuarios(jTusuario.getText().toLowerCase(), pass, tipo);
-        accesoUsuarios.add(accesoUsuario);
-        accesoUsuario.setUsuario(usuario);
-        usuario.setAccesoUsuarios(accesoUsuario);
-        if (usuariosBBDD.insertUsuarios(usuario) == true && accesoUsuariosBBDD.insertUsuarios(accesoUsuario) == true) {
+        accesoUser = new AccesoUsuarios(jTusuario.getText().toLowerCase(), pass, tipo);
+        accesoUsuar.add(accesoUser);
+        accesoUser.setUsuario(usuario);
+        usuario.setAccesoUsuarios(accesoUser);
+        if (usuariosBBDD.insertUsuarios(usuario) == true && accesoUsuariosBBDD.insertUsuarios(accesoUser) == true) {
             //mail.enviarMail(accesoUsuario.getUserWin(), accesoUsuario.getPass(), usuario.getCorreo(), opcion);
             JOptionPane.showMessageDialog(null, "Alta Usuario realizada Correctamente", "Alta", JOptionPane.INFORMATION_MESSAGE);
             limpiarUsuarios();
@@ -638,138 +642,55 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
     }//GEN-LAST:event_borrarCochesActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        accesoUser = vAccesoUsuarios.getAcc();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
         DateFormat horaFormat = new SimpleDateFormat("HH:mm");
-
         int index = jComboBox1.getSelectedIndex();
         coche = ch.get(index);
         String fecha = dateFormat.format(jDateChooser1.getDate());
-        String horaRecogida = dateFormat.format(jDateChooser1.getDate()).concat(" ").concat(horaFormat.format(sm.getDate()).concat(":00"));
-        String horaEntrega = dateFormat.format(jDateChooser1.getDate()).concat(" ").concat(horaFormat.format(sm3.getDate()).concat(":00"));
-        String motivo = jTextField1.getText();
-        reserva = new Conducen(fecha, horaRecogida, horaEntrega, motivo);
-        //          System.out.println(accesoUsuario.getUserWin()+" "+coche.getMatricula()+" "+fecha + " " + horaRecogida + " " + horaEntrega+" "+motivo);
-        if (conducenBBDD.insertarReserva(accesoUsuario, coche, reserva) == true) {
-            System.out.println(accesoUsuario.getUserWin() + " " + coche.getMatricula() + " " + fecha + " " + horaRecogida + " " + horaEntrega + " " + motivo);
+        reserva = new Conducen(fecha,
+                dateFormat.format(jDateChooser1.getDate()).concat(" ").concat(horaFormat.format(jsinicio.getValue()).concat(":00")),
+                dateFormat.format(jDateChooser1.getDate()).concat(" ").concat(horaFormat.format(jsfin.getValue()).concat(":00")),
+                jTextField1.getText());
+        if (conducenBBDD.insertarReserva(accesoUser, coche, reserva) == true) {
+
+            accesoUser.setConducen(reserva);
+         
+            reserva.setAccesoUsuarios(accesoUser);
+            coche.setConducen(reserva);
+            reserva.setCoches(coche);
+            conducen2.add(reserva);
+            System.out.println(accesoUser.getUserWin() + " " + coche.getMatricula() + " " + fecha + " "
+                    + dateFormat.format(jDateChooser1.getDate()).concat(" ").concat(horaFormat.format(jsinicio.getValue()).concat(":00")) + " "
+                    + dateFormat.format(jDateChooser1.getDate()).concat(" ").concat(horaFormat.format(jsfin.getValue()).concat(":00")) + " "
+                    + jTextField1.getText());
             limpiarReservas();
-        } else {
-            System.out.println("caca");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void login(AccesoUsuarios acc) {
-        if (acc.getTipo().equalsIgnoreCase("user")) {
-            jTabbedPane1.setEnabledAt(0, false);
-            jTabbedPane1.setEnabledAt(1, false);
-            jTabbedPane1.setSelectedIndex(2);
-        }
-    }
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        SimpleDateFormat formatHora = new SimpleDateFormat("HH:mm");
 
-    public void limpiarUsuarios() {
-        String t = " ";
-        jTusuario.setText(t);
-        jTnombre.setText(t);
-        jTapellidos.setText(t);
-        jTcorreo.setText(t);
-        jTtelefono.setText(t);
-        jCheckAdmin.setSelected(false);
+        int index = jTable1.getSelectedRow();
+        if (conducen3.get(index).getAccesoUsuarios().getUserWin().equals(vAccesoUsuarios.getAcc().getUserWin())) {
+            Calendar ini = Calendar.getInstance();
+            int a = Integer.parseInt(conducen3.get(index).getHoraRecogida().substring(11, 13));
+            ini.set(Calendar.HOUR_OF_DAY, a);
+            int b = Integer.parseInt(conducen3.get(index).getHoraRecogida().substring(14, 16));
+            ini.set(Calendar.HOUR_OF_DAY, b);
 
-    }
-
-    public void limpiarCoches() {
-        String t = "";
-
-        jTmarca.setText(t);
-        jTmodelo.setText(t);
-        jTmatricula.setText(t);
-    }
-
-    public void limpiarReservas() {
-        jComboBox1.setSelectedIndex(0);
-        jDateChooser1.setDate(null);
-        jTextField1.setText("");
-    }
-
-    public void llenarCB() {
-
-        ch = cochesBBDD.listarCoches();
-        //ch = cochesBBDD.listarCoches();
-
-        jComboBox1.removeAllItems();
-
-        for (int i = 0; i < ch.size(); i++) {
-            jComboBox1.addItem(ch.get(i).getMarca().concat(" ").concat(ch.get(i).getModelo().concat(" ").concat(ch.get(i).getMatricula())));
-        }
-    }
-
-    public void añadirEsccuhaDataChoser() {
-        jDateChooser1.getDateEditor().addPropertyChangeListener(
-                new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent e) {
-                if ("date".equals(e.getPropertyName())) {
-                    listarviajes1();
-                }
+            String hora = Integer.toString(a).concat(":").concat(Integer.toString(b));
+            Date date2;
+            try {
+                date2 = formatHora.parse(hora);
+                jButton2.setVisible(true);
+                jsinicio.setValue(date2);
+            } catch (ParseException ex) {
+                Logger.getLogger(vPanelCochesDelegacion.class.getName()).log(Level.SEVERE, null, ex);
             }
-        });
-        this.add(jDateChooser1);
-    }
-
-
-    public void listarviajes1() {
-        jModel = (DefaultTableModel) jTable1.getModel();
-        DefaultTableCellRenderer Alinear = new DefaultTableCellRenderer();
-        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
-        List<Conducen> conducen2 = conducenBBDD.listarReservas1();
-        if (jTable1.getRowCount() == 0) {
-
-            int i = 0;
-            do {
-                if (conducen2.get(i).getFechaRecogida().equals(fecha())) {
-                    jModel.insertRow(jModel.getRowCount(), new Object[]{
-                        conducen2.get(i).getAccesoUsuarios().getUsuario().getNombre(), 
-                        conducen2.get(i).getCoches().getMarca(), 
-                        conducen2.get(i).getFechaRecogida(), 
-                        conducen2.get(i).getHoraRecogida().substring(11, 16), 
-                        conducen2.get(i).getHoraEntrega().substring(11, 16), 
-                        conducen2.get(i).getMotivo()
-                    });
-                }
-                i++;
-            } while (i < conducen2.size());
-
-        } else {
-            jModel.setRowCount(0);
-            int i = 0;
-            do {
-                if (conducen2.get(i).getFechaRecogida().equals(fecha())) {
-                    jModel.insertRow(jModel.getRowCount(), new Object[]{
-                        conducen2.get(i).getAccesoUsuarios().getUsuario().getNombre(), 
-                        conducen2.get(i).getCoches().getMarca(), 
-                        conducen2.get(i).getFechaRecogida(), 
-                        conducen2.get(i).getHoraRecogida().substring(11, 16), 
-                        conducen2.get(i).getHoraEntrega().substring(11, 16), 
-                        conducen2.get(i).getMotivo()
-                    });
-                }
-                i++;
-            } while (i < conducen2.size());
-        }
-        for (int j = 0; j < 6; j++) {
-
-            jTable1.getColumnModel().getColumn(j).setCellRenderer(Alinear);
         }
 
-    }
-
-    public String fecha() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String date = dateFormat.format(jDateChooser1.getDate());
-        return date;
-    }
-
+    }//GEN-LAST:event_jTable1MouseClicked
     /**
      * @param args the command line arguments
      */
@@ -813,10 +734,14 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
     private javax.swing.JButton buscarCoches;
     private javax.swing.JButton buscarUsuarios;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckAdmin;
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -853,4 +778,97 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
     private javax.swing.JButton modificarCoches;
     private javax.swing.JButton modificarUsuarios;
     // End of variables declaration//GEN-END:variables
+    public void login(AccesoUsuarios acc) {
+        if (acc.getTipo().equalsIgnoreCase("user")) {
+            jTabbedPane1.setEnabledAt(0, false);
+            jTabbedPane1.setEnabledAt(1, false);
+            jTabbedPane1.setSelectedIndex(2);
+        }
+    }
+
+    public void limpiarUsuarios() {
+        String t = "";
+        jTusuario.setText(t);
+        jTnombre.setText(t);
+        jTapellidos.setText(t);
+        jTcorreo.setText(t);
+        jTtelefono.setText(t);
+        jCheckAdmin.setSelected(false);
+
+    }
+
+    public void limpiarCoches() {
+        String t = "";
+
+        jTmarca.setText(t);
+        jTmodelo.setText(t);
+        jTmatricula.setText(t);
+    }
+
+    public void limpiarReservas() {
+        Date date = new Date();
+        jComboBox1.setSelectedIndex(0);
+        jDateChooser1.setDate(date);
+        jTextField1.setText("");
+        listarviajes2();
+    }
+
+    public void listarviajes2() {
+        jModel = (DefaultTableModel) jTable1.getModel();
+        DefaultTableCellRenderer Alinear = new DefaultTableCellRenderer();
+        Alinear.setHorizontalAlignment(SwingConstants.CENTER);
+
+        if (jTable1.getRowCount() == 0) {
+
+            int i = 0;
+            do {
+                if (conducen2.get(i).getFechaRecogida().equals(fecha())) {
+                    conducen3.add(conducen2.get(i));
+                    jModel.insertRow(jModel.getRowCount(), new Object[]{
+                        conducen2.get(i).getAccesoUsuarios().getUsuario().getNombre().concat(" ").concat(conducen2.get(i).getAccesoUsuarios().getUsuario().getApellidos()),
+                        conducen2.get(i).getCoches().getMarca().concat(" ").concat(conducen2.get(i).getCoches().getModelo()),
+                        //(conducen2.get(i).getFechaRecogida()),
+                        conducen2.get(i).getHoraRecogida().substring(11, 16),
+                        conducen2.get(i).getHoraEntrega().substring(11, 16),
+                        conducen2.get(i).getMotivo()
+                    });
+                }
+                i++;
+            } while (i < conducen2.size());
+
+        } else {
+            if (conducen3.size() > 0) {
+                conducen3.clear();
+            }
+            jModel.setRowCount(0);
+            int i = 0;
+            do {
+                if (conducen2.get(i).getFechaRecogida().equals(fecha())) {
+                    conducen3.add(conducen2.get(i));
+                }
+                i++;
+            } while (i < conducen2.size());
+            for (int h = 0; h < conducen3.size(); h++) {
+                jModel.insertRow(jModel.getRowCount(), new Object[]{
+                    conducen3.get(h).getAccesoUsuarios().getUsuario().getNombre(),
+                    conducen3.get(h).getCoches().getMarca().concat(" ").concat(conducen3.get(h).getCoches().getModelo()),
+                    // conducen2.get(i).getFechaRecogida(),
+                    conducen3.get(h).getHoraRecogida().substring(11, 16),
+                    conducen3.get(h).getHoraEntrega().substring(11, 16),
+                    conducen3.get(h).getMotivo()
+                });
+            }
+        }
+        for (int j = 0; j < 5; j++) {
+
+            jTable1.getColumnModel().getColumn(j).setCellRenderer(Alinear);
+        }
+
+    }
+
+    public String fecha() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date = dateFormat.format(jDateChooser1.getDate());
+        return date;
+    }
 }

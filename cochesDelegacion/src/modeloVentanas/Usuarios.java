@@ -36,6 +36,13 @@ public class Usuarios {
         this.nombre = nombre;
     }
 
+    public Usuarios(String nombre, String apellidos, String correo) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.correo = correo;
+    }
+    
+
     public String getNombre() {
         return nombre;
     }

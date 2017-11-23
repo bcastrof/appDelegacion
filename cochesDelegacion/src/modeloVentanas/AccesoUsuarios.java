@@ -14,13 +14,12 @@ import java.util.List;
  */
 public class AccesoUsuarios {
 
-  
     private String userWin;
     private String pass;
     private String tipo;
     private Usuarios usuario;
-//    private Conducen conducen;
-    private List<Conducen> conducen = new ArrayList<>();
+    private Conducen conducen;
+    private List<Conducen> conducenL = new ArrayList<>();
 
     public AccesoUsuarios(String userWin) {
         this.userWin = userWin;
@@ -72,14 +71,14 @@ public class AccesoUsuarios {
         this.tipo = tipo;
     }
 
-//    public Conducen getConducen() {
-//        return conducen;
-//    }
-//
-//    public void setConducen(Conducen conducen) {
-//        this.conducen = conducen;
-//    }
+    public Conducen getConducen() {
+        return conducen;
+    }
+
+    public void setConducen(Conducen conducen) {
+        this.conducen = conducen;
+    }
     public void añadirConducen(Conducen c) {
-        conducen.add(c);
+        conducenL.add(c);
     }
 }

@@ -17,8 +17,8 @@ public class Coches {
     private String modelo;
     private String matricula;
 
-//    private Conducen conducen;
-    private List<Conducen> conducen = new ArrayList<>();
+    private Conducen conducen;
+    private List<Conducen> conducenL = new ArrayList<>();
 
     public Coches() {
     }
@@ -57,15 +57,15 @@ public class Coches {
         this.matricula = Matricula;
     }
 
-//    public Conducen getConducen() {
-//        return conducen;
-//    }
-//
-//    public void setConducen(Conducen conducen) {
-//        this.conducen = conducen;
-//    }
+    public Conducen getConducen() {
+        return conducen;
+    }
+
+    public void setConducen(Conducen conducen) {
+        this.conducen = conducen;
+    }
     
     public void añadirConducen(Conducen c){
-        conducen.add(c);
+        conducenL.add(c);
     }
 }

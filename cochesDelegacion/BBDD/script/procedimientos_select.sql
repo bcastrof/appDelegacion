@@ -112,7 +112,7 @@ END;
 CREATE PROCEDURE cargaReservas1()
 READS SQL DATA DYNAMIC RESULT SETS 1
 BEGIN ATOMIC
-DECLARE result CURSOR FOR SELECT u.nombre, u.apellidos,co.MARCA, co.MODELO, c.fechaRecogida, c.horaRecogida, c.horaEntrega, c.MOTIVO
+DECLARE result CURSOR FOR SELECT a.USERWIN, u.NOMBRE, u.APELLIDOS, u.CORREO, co.MARCA, co.MODELO, co.MATRICULA, c.FECHARECOGIDA, c.HORARECOGIDA, c.HORAENTREGA, c.MOTIVO
 from accesouser a
 join usuarios u
 on 
@@ -124,6 +124,7 @@ c.userwin = a.userwin
 join coches co
 on
 co.MATRICULA=c.MATRICULA;
+order by c.fechaRecogida, c.horaRecogida
 OPEN result;
 END;
 
