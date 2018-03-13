@@ -49,7 +49,7 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
     private final List<Usuarios> usuarios = new ArrayList<>();
     private final List<AccesoUsuarios> accesoUsuar = new ArrayList<>();
     private final ConducenBBDD conducenBBDD = new ConducenBBDD();
-    private  List<Conducen> conducen2 = conducenBBDD.listarReservas2();
+    private final  List<Conducen> conducen2 = conducenBBDD.listarReservas2();
     private final List<Conducen> conducen3 = new ArrayList<>();
     private DefaultTableModel jModel;
 
@@ -808,7 +808,7 @@ public final class vPanelCochesDelegacion extends javax.swing.JFrame {
     public void limpiarReservas() {
         Date date = new Date();
         jComboBox1.setSelectedIndex(0);
-        jDateChooser1.setDate(date);
+        //jDateChooser1.setDate(date);
         jTextField1.setText("");
         listarviajes2();
     }

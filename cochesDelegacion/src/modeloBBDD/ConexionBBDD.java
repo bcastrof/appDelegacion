@@ -19,7 +19,7 @@ public class ConexionBBDD {
     private String database3 = "N:\\RESERVA_VEHÍCULOS\\año_2017\\cochesDelegacion\\BBDD\\cochesDelegacion";
     private String username="bcastrof";
     private String password="amets517";
-    private String url = "jdbc:hsqldb:"+database3;
+    private String url = "jdbc:hsqldb:"+database;
 
     public Connection conexion;
     

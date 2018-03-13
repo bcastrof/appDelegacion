@@ -29,10 +29,10 @@ public class Pruebas {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException {
-//        ConexionBBDD con = new ConexionBBDD();
+        ConexionBBDD con = new ConexionBBDD();
 
-//        con.getConnection();
-//        con.desconexionBBDD();
+        con.getConnection();
+        con.desconexionBBDD();
 //        String sql = "{call cargaUsuario (?,?,?,?,?,?,?,?)}";
 //
 //        try {
@@ -57,12 +57,7 @@ public class Pruebas {
 //        }
 
 
-        ConducenBBDD conducenBBDD = new ConducenBBDD();
-        //co=conducenBBDD.listarReservas("2017-11-14");
-        List <Conducen> co=conducenBBDD.listarReservas("2017-11-14");
-        co.forEach((co1) -> {
-            System.out.println(co1.getCoches().getMarca()+" "+co1.getFechaRecogida());
-        });
+    
     }
-    lol
+  
 }
